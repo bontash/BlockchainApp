@@ -8,7 +8,6 @@ const BlockField = ({fieldName, fieldValue, onChange, readOnly}) => {
                       margin={"dense"} onChange={onChange}
                       value={fieldValue}
                       InputProps={{readOnly:readOnly}}
-
     />
 }
 

@@ -1,10 +1,7 @@
-import {Block} from "./components/Block";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import {theme} from "../../core/ui/theme/themeOptions";
 import {Grid, ThemeProvider} from "@mui/material";
-import EthereumBlock from "./modules/EthereumBlock";
 import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
-import BitcoinBlock from "./modules/BitcoinBlock";
 import EthereumBlockchain from "./modules/EthereumBlockchain";
 import BitcoinBlockchain from "./modules/BitcoinBlockchain";
 
