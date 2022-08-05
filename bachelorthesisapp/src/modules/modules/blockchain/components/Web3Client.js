@@ -1,8 +1,7 @@
 import Web3 from "web3";
 
 
-//const { networkId, networkName, providerName } = web3Context;
-
+// const { networkId, networkName, providerName } = web3Context;
 // const Web3Client = () => (<div>
 //     <h1>Infura/MetaMask/OpenZeppelin Dapp</h1>
 //     <div>
@@ -12,9 +11,9 @@ import Web3 from "web3";
 //         Provider: {providerName}
 //     </div>
 // </div>)
-
-//export default Web3Client;
-
+//
+// export default Web3Client;
+//
 // export const init = () => {
 //     let provider = window.ethereum;
 //
@@ -33,4 +32,4 @@ import Web3 from "web3";
 //     const web3 = new Web3(provider);
 //     const idk = web3.eth.sendTransaction(selectedAccount);
 //     console.log(idk);
-//}
+// }

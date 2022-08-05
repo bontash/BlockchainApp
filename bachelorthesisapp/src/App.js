@@ -69,11 +69,11 @@ function App() {
     //         setNetwork(network);
     //         const balance = await web3.eth.getBalance(account);
     //         setBalance(balance/1e18);
-    //         // web3.eth.sendTransaction({
-    //         //     from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
-    //         //     to: '0xd93ff41e7b4D10cb6da0406122a14FFce267Fe2C',
-    //         //     value:'10'
-    //         // })
+    //         web3.eth.sendTransaction({
+    //             from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
+    //             to: '0xd93ff41e7b4D10cb6da0406122a14FFce267Fe2C',
+    //             value:'10'
+    //         })
     //     }
     //
     //     loadAccounts();

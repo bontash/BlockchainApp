@@ -1,6 +1,6 @@
 import EthereumBlock from "./EthereumBlock";
 import {Grid} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import BitcoinBlock from "./BitcoinBlock";
 
 
@@ -46,6 +46,11 @@ const BitcoinBlockchain = () => {
         prevBlockHash: "",
         hash: ""
     }]);
+
+    useEffect(() => {
+
+
+    },[blocks])
 
     function getItemSize() {
         if (blocks.length >= 4) {
