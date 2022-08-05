@@ -9,7 +9,7 @@ const BitcoinBlockchain = () => {
         blockNr: "",
         nonce: "",
         timestamp: "",
-        data: "",
+        value: "",
         difficulty: "",
         prevBlockHash: "",
         hash: ""
@@ -17,7 +17,7 @@ const BitcoinBlockchain = () => {
         blockNr: "",
         nonce: "",
         timestamp: "",
-        data: "",
+        value: "",
         difficulty: "",
         prevBlockHash: "",
         hash: ""
@@ -25,7 +25,7 @@ const BitcoinBlockchain = () => {
         blockNr: "",
         nonce: "",
         timestamp: "",
-        data: "",
+        value: "",
         difficulty: "",
         prevBlockHash: "",
         hash: ""
@@ -33,7 +33,7 @@ const BitcoinBlockchain = () => {
         blockNr: "",
         nonce: "",
         timestamp: "",
-        data: "",
+        value: "",
         difficulty: "",
         prevBlockHash: "",
         hash: ""
@@ -41,7 +41,7 @@ const BitcoinBlockchain = () => {
         blockNr: "",
         nonce: "",
         timestamp: "",
-        data: "",
+        value: "",
         difficulty: "",
         prevBlockHash: "",
         hash: ""

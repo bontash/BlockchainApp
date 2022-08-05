@@ -2,9 +2,9 @@ import React from "react";
 import {Button} from "@mui/material";
 import {CustomButton} from "../../../core/ui/CustomButton";
 
-const NodeButton = () => {
+const NodeButton = ({onClick}) => {
     return <CustomButton>
-                <Button color="secondary" variant="contained" disabled>
+                <Button color="secondary" variant="contained" onClick={onClick}>
                     MINE
                 </Button>
             </CustomButton>
