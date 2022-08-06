@@ -20,7 +20,7 @@ const EthereumBlock = ({blockInfo, setBlockInfo}) => {
         const weiValue = Web3Client.utils.toWei(value);
         Web3Client.eth.sendTransaction({
             from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
-            to: '0xd93ff41e7b4D10cb6da0406122a14FFce267Fe2C',
+            to: '0x72DA7F08e90E9347217Ea77E9BF08B4AFb272cF5',
             value: weiValue // deploying a contract
         }, function(error, hash){
             console.log("error: "+error+" and hash: "+hash);

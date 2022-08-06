@@ -5,6 +5,7 @@ import StringEncryption from "../../modules/stringEncryption";
 import Blockchain from "../../modules/blockchain/MockPage";
 import HashProperties from "../../modules/hashProperties";
 import Database from "../../modules/database";
+import EthereumTransactionPage from "../../modules/blockchain/EthereumTransactionPage";
 
 const Router = () => {
     return <BrowserRouter>
@@ -15,6 +16,7 @@ const Router = () => {
             <Route path={"/blockchain"} exact component={Blockchain} />
             <Route path={"/properties"} exact component={HashProperties}/>
             <Route path={"/database"} exact component={Database}/>
+            <Route path={"/ethereumTransaction"} exact component={EthereumTransactionPage}/>
         </Switch>
     </BrowserRouter>
 }

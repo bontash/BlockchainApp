@@ -1,10 +1,4 @@
 import Web3 from "web3";
-import {useEffect, useState} from "react";
-
-
-// const [account, setAccount] = useState();
-// const [network, setNetwork] = useState();
-// const [balance, setBalance] = useState();
 
 // const providerUrl = "https://ropsten.infura.io/v3/7a04937cd8854d3183e68da52e43944b";
 
@@ -13,6 +7,7 @@ import {useEffect, useState} from "react";
 // when the elems from the dependency list change
 
 export const Web3Client = new Web3(Web3.givenProvider || 'localhost:7545');
+
 
 // useEffect(() => {
 //
@@ -38,3 +33,4 @@ export const Web3Client = new Web3(Web3.givenProvider || 'localhost:7545');
 //     loadBalance();
 //
 // }, [account, network, balance])
+
