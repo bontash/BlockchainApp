@@ -2,10 +2,10 @@ import React from "react";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Home from "../../modules/home";
 import StringEncryption from "../../modules/stringEncryption";
-import Blockchain from "../../modules/blockchain/MockPage";
+import Blockchain from "../../modules/blockchain/mockPage/MockPage";
 import HashProperties from "../../modules/hashProperties";
 import Database from "../../modules/database";
-import EthereumTransactionPage from "../../modules/blockchain/EthereumTransactionPage";
+import EthereumTransactionPage from "../../modules/blockchain/transactionsPage/EthereumTransactionPage";
 
 const Router = () => {
     return <BrowserRouter>

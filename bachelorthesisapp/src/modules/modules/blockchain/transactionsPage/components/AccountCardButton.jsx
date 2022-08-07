@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@mui/material";
-import {CustomButton} from "../../../core/ui/CustomButton";
+import {CustomButton} from "../../../../core/ui/CustomButton";
 
 const NodeButton = ({onClick}) => {
     return <CustomButton>

@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, CardContent, Grid, TextField, Typography} from "@mui/material";
 import AccountCardButton from "./AccountCardButton";
-import CustomTextField from "../../../core/ui/CustomTextField";
+import CustomTextField from "../../../../core/ui/CustomTextField";
 
 const AccountsCard = ({onChangeAccount, onChangeValue, accountValue, valueField, onClick}) => {
     return <Grid container alignItems={'center'} justify={'center'} direction={'column'}>

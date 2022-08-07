@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {ThemeProvider} from "@mui/material";
-import {theme} from "../../core/ui/theme/themeOptions";
-import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
-import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
+import {theme} from "../../../core/ui/theme/themeOptions";
+import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
+import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
 import AccountsCard from "./components/AccountsCard";
 import {Web3Client} from "./components/Web3Client";
 import TransactionsTable from "./modules/TransactionsTable";
@@ -69,7 +69,7 @@ const EthereumTransactionPage = () => {
                           onChangeValue={(e) => setValueField(e.target.value)}
                           onClick={() => mineValue()}/>
         </NavbarContainer>
-        <TransactionsTable />
+        <TransactionsTable/>
     </ThemeProvider>
 }
 
