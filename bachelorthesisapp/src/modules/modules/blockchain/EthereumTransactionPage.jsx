@@ -5,6 +5,7 @@ import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground"
 import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
 import AccountsCard from "./components/AccountsCard";
 import {Web3Client} from "./components/Web3Client";
+import TransactionsTable from "./modules/TransactionsTable";
 
 const EthereumTransactionPage = () => {
 
@@ -68,6 +69,7 @@ const EthereumTransactionPage = () => {
                           onChangeValue={(e) => setValueField(e.target.value)}
                           onClick={() => mineValue()}/>
         </NavbarContainer>
+        <TransactionsTable />
     </ThemeProvider>
 }
 

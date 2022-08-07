@@ -8,7 +8,7 @@ const AccountsCard = ({onChangeAccount, onChangeValue, accountValue, valueField,
         <Grid item xs={3}>
             <Card sx={{
                 width: 450,
-                height: 270,
+                height: 260,
                 backgroundColor: 'lightgoldenrodyellow',
                 fontFamily: 'Trebuchet MS',
                 display: 'flex',

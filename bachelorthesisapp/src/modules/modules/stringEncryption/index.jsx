@@ -22,8 +22,8 @@ const fetchEncryptedString = (hashList, stringToEncrypt, setResponse) => {
 
 
 const StringEncryption = () => {
-    const [hash, setHash] = useState([])
-    const [stringToEncrypt, setStringToEncrypt] = useState("")
+    const [hash, setHash] = useState([]);
+    const [stringToEncrypt, setStringToEncrypt] = useState("");
 
     const [encryptionResponse, setEncryptionResponse] = useState([]);
 
@@ -33,7 +33,7 @@ const StringEncryption = () => {
 
     return <ThemeProvider theme={theme}>
         <ParticlesBackground/>
-        <NavbarContainer />
+        <NavbarContainer>
         <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
             <HashDropdown setHashList={setHash} hashList={hash}/>
             <TextField
@@ -54,7 +54,8 @@ const StringEncryption = () => {
             <p></p>
             <CustomizedTables rows={encryptionResponse}/>
         </Box>
+        </NavbarContainer>
     </ThemeProvider>
 }
 
-export default StringEncryption
+export default StringEncryption;

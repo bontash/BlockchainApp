@@ -21,4 +21,4 @@ const Blockchain = () => {
     </ThemeProvider>
 }
 
-export default Blockchain
+export default Blockchain;

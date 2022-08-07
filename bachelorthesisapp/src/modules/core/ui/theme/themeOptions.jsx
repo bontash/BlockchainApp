@@ -10,7 +10,6 @@ export const theme = createTheme({
         },
         secondary: {
             main: '#125B50',
-
         },
     }
 })
