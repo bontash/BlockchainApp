@@ -16,7 +16,7 @@ export default class Controller {
             "simpleSha256": this.service.hashToSimpleSHA256,
             "simpleRipemd160": this.service.hashToSimpleRIPEMD160,
             "keccak256": this.service.hashToKeccak256,
-            "doubleSha256" : this.service.hashToDoubleSHA256,
+            "doubleSha256": this.service.hashToDoubleSHA256,
             "shaAndRipe": this.service.hashToSHAandRIPE
         }
     }
@@ -27,11 +27,17 @@ export default class Controller {
         console.log(hashTypes)
 
         hashTypes.forEach(hash => {
-            const hashFunc:any = this.serviceFunctions[hash]
-            const benchmarks = hashFunc.apply(null,[stringToHash]);
+            const hashFunc: any = this.serviceFunctions[hash]
+            const benchmarks = hashFunc.apply(null, [stringToHash]);
             hashResponse.push(benchmarks);
         })
 
         return {hashResponse}
     }
+
+    public ethereumEncryption() {
+        return;
+    }
+
+
 }

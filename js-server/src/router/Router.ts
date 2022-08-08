@@ -10,9 +10,20 @@ export default class Router {
 
 
     private initEndpointMapping(router) {
-        router.post("/hashing", ({request,response}) => {
+        router.post("/hashing", ({request, response}) => {
             try {
                 const result = this.controller.encrypt(request.body);
+                response.status = 200;
+                response.body = result;
+            } catch (e) {
+                response.status = 500;
+                response.body = {error: "Internal server error"};
+            }
+        })
+
+        router.post("/ethereumEncryption", ({request, response}) => {
+            try {
+                const result = this.controller.ethereumEncryption();
                 response.status = 200;
                 response.body = result;
             } catch (e) {
