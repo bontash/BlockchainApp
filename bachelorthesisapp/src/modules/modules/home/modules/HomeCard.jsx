@@ -7,7 +7,7 @@ import {
     LogoFrontFlipCard,
     TextFrontFlipCard
 } from "../components/FlipCards";
-import {Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 
 const HomeCard = ({hash}) => {
     
@@ -22,11 +22,11 @@ const HomeCard = ({hash}) => {
                     }
                 </FlipCardFront>
                 <FlipCardBack>
-                    {/*<Typography variant={"subtitle1"}>{hash.description}</Typography>*/}
+                    <Typography variant={"subtitle1"}>{hash.description}</Typography>
                 </FlipCardBack>
             </FlipCardInner>
         </FlipCard>
     </Grid>
 }
 
-export default HomeCard
+export default HomeCard;
