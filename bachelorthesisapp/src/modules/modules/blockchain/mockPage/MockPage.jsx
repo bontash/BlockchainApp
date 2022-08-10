@@ -7,18 +7,17 @@ import BitcoinBlockchain from "./modules/BitcoinBlockchain";
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import StyledChip from "./components/StyledChip";
 
-
 const Blockchain = () => {
     return <ThemeProvider theme={theme}>
         <ParticlesBackground/>
         <NavbarContainer>
             <Grid container direction="column" rowGap={4} justifyContent={"flex-start"}>
-                <Grid item xs={12}>
-                    <StyledChip label={'Ethereum blockchain'}/>
-                </Grid>
-                <Grid item xs={6}>
-                    <EthereumBlockchain/>
-                </Grid>
+                {/*<Grid item xs={12}>*/}
+                {/*    <StyledChip label={'Ethereum blockchain'}/>*/}
+                {/*</Grid>*/}
+                {/*<Grid item xs={6}>*/}
+                {/*    <EthereumBlockchain/>*/}
+                {/*</Grid>*/}
                 <Grid item xs={12}>
                     <StyledChip label={'Bitcoin blockchain'}/>
                 </Grid>

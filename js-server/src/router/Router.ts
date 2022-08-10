@@ -31,5 +31,16 @@ export default class Router {
                 response.body = {error: "Internal server error"};
             }
         })
+
+        router.post("/bitcoinEncryption", ({request, response}) => {
+            try {
+                const result = this.controller.bitcoinEncryption(request.body);
+                response.status = 200;
+                response.body = result;
+            } catch (e) {
+                response.status = 500;
+                response.body = {error: "Internal server error"};
+            }
+        })
     }
 }

@@ -15,7 +15,10 @@ export function sha256Ripemd160Hashing(userString : string) {
 }
 
 export function sha256SimpleHashing(userString : string) {
+    console.log(userString);
     const hash = sha256(utf8ToBytes(userString));
+    console.log(utf8ToBytes(userString));
+    console.log(hash);
     return toHex(hash);
 }
 

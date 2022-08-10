@@ -1,6 +1,10 @@
 import Service from "../service/Service";
 import {HashInput, HashType} from "../types/HashInput";
 import {HashOutput, HashBenchmarks} from "../types/HashOutput";
+import {BitcoinInput} from "../types/BitcoinInput";
+import {toHex, utf8ToBytes} from "ethereum-cryptography/utils";
+import {changeEndianness} from "../utils/changeEndianness";
+import {BitcoinOutput} from "../types/BitcoinOutput";
 
 export default class Controller {
     service: Service;
@@ -39,5 +43,14 @@ export default class Controller {
         return;
     }
 
-
+    public bitcoinEncryption(input:BitcoinInput): BitcoinOutput {
+        const blockNrHex = toHex(utf8ToBytes(input.blockNr.toString()));
+        const nonceHex = toHex(utf8ToBytes(input.nonce.toString()));
+        const timestampHex = toHex(utf8ToBytes(input.timestamp));
+        const valueHex = toHex(utf8ToBytes(input.value.toString()));
+        const prevBlockHashHex = toHex(utf8ToBytes(input.prevBlockHash));
+        const stringOutput = this.service.hashToDoubleSHA256(blockNrHex + nonceHex + timestampHex + valueHex + prevBlockHashHex).hashedString;
+        const finalHash = changeEndianness(stringOutput);
+        return {finalHash};
+    }
 }

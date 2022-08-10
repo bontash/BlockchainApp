@@ -42,8 +42,6 @@ const EthereumBlock = ({blockInfo, setBlockInfo}) => {
                             onChange={(e) => setBlockInfo(e.target.value, "gasLimit")} readOnly/>
                 <BlockField fieldName={"Gas used"} fieldValue={blockInfo.gasUsed}
                             onChange={(e) => setBlockInfo(e.target.value, "gasUsed")} readOnly/>
-                <BlockField fieldName={"Difficulty"} fieldValue={blockInfo.difficulty}
-                            onChange={(e) => setBlockInfo(e.target.value, "difficulty")} readOnly/>
                 <BlockField fieldName={"Previous block hash"} fieldValue={blockInfo.prevBlockHash}
                             onChange={(e) => setBlockInfo(e.target.value, "prevBlockHash")} readOnly/>
                 <BlockField fieldName={"Hash"} fieldValue={blockInfo.hash}

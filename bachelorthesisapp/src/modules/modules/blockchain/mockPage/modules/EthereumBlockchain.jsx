@@ -12,7 +12,6 @@ const EthereumBlockchain = () => {
         value: "",
         gasLimit: "",
         gasUsed: "",
-        difficulty: "",
         prevBlockHash: "",
         hash: ""
     }]);
@@ -29,11 +28,10 @@ const EthereumBlockchain = () => {
             <EthereumBlock blockInfo={{
                 blockNr: 1,
                 nonce: 0,
-                timestamp: new Date().toLocaleTimeString(),
+                timestamp: Date.now().toString(),
                 value: "",
                 gasLimit: 0,
                 gasUsed: 0,
-                difficulty: '000',
                 prevBlockHash: '0x0000000000000000000000000000000000000000'
             }}/>
         </Grid>
