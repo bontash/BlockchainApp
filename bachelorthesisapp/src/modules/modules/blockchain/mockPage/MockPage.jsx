@@ -2,9 +2,7 @@ import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackgrou
 import {theme} from "../../../core/ui/theme/themeOptions";
 import {Chip, Grid, ThemeProvider, Typography} from "@mui/material";
 import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
-import EthereumBlockchain from "./modules/EthereumBlockchain";
 import BitcoinBlockchain from "./modules/BitcoinBlockchain";
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import StyledChip from "./components/StyledChip";
 
 const Blockchain = () => {
