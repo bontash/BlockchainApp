@@ -2,7 +2,7 @@ import React from "react";
 import {TextField} from "@mui/material";
 
 const BlockField = ({fieldName, fieldValue, onChange, readOnly}) => {
-    return <TextField sx={{width: 300}}
+    return <TextField sx={{width: 405}}
                       label={fieldName}
                       variant={'outlined'}
                       margin={"dense"} onChange={onChange}

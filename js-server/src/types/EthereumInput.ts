@@ -5,6 +5,6 @@ export type EthereumInput = {
     value: string,
     gasLimit: number,
     gasUsed: number,
-    prevBlockHash: number,
-    hash: number
+    prevBlockHash: string,
+    hash: string
 }

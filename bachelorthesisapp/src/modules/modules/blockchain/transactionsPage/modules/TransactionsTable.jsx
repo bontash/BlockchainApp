@@ -5,8 +5,29 @@ import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import {StyledTableCell} from "../../../../core/ui/StyledTableCell";
+import {Web3Client} from "../components/Web3Client";
 
 const TransactionsTable = () => {
+    function mineValue(value) {
+        const weiValue = Web3Client.utils.toWei(value);
+        Web3Client.eth.sendTransaction({
+            from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
+            to: '0x72DA7F08e90E9347217Ea77E9BF08B4AFb272cF5',
+            value: weiValue // deploying a contract
+        }, function (error, hash) {
+            console.log("error: " + error + " and hash: " + hash);
+        });
+    }
+
+    // function mineData(data) {
+    //     const hashedData = Web3Client.eth.abi.encodeFunctionSignature(data);
+    //     Web3Client.eth.sendTransaction({
+    //         from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
+    //         data: hashedData // deploying a contract
+    //     }, function (error, hash) {
+    //         console.log("error: " + error + " and hash: " + hash);
+    //     });
+    // }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">

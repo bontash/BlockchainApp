@@ -23,7 +23,7 @@ export default class Router {
 
         router.post("/ethereumEncryption", ({request, response}) => {
             try {
-                const result = this.controller.ethereumEncryption();
+                const result = this.controller.ethereumEncryption(request.body);
                 response.status = 200;
                 response.body = result;
             } catch (e) {

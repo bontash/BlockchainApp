@@ -7,7 +7,7 @@ import CheckIcon from '@mui/icons-material/Check';
 const BitcoinBlock = ({blockInfo, setBlockInfo, isCorrupted}) => {
 
     return <Grid container direction="row" justifyContent="space-evenly" alignItems="flex-start">
-        <Card sx={{width: 300, height: 520, backgroundColor: 'lightgoldenrodyellow'}}>
+        <Card sx={{width: 470, height: 520, backgroundColor: 'lightgoldenrodyellow'}}>
             <CardContent>
                 <BlockField fieldName={"Block nr"} fieldValue={blockInfo.blockNr}
                             onChange={async (e) => await setBlockInfo(e.target.value, "blockNr")} readOnly/>
