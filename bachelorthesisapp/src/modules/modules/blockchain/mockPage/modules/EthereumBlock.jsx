@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardContent, Grid, Button} from "@mui/material";
+import {Card, CardContent, Grid, Button, Box} from "@mui/material";
 import BlockField from "../components/BlockField";
 import NodeButton from "../components/NodeButton";
 import {Web3Client} from "../../transactionsPage/components/Web3Client";
@@ -9,7 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 const EthereumBlock = ({blockInfo, setBlockInfo, isCorrupted}) => {
 
     return <Grid container direction="row" justifyContent="space-evenly" alignItems="flex-start">
-        <Card sx={{width: 450, height: 600, backgroundColor: 'lightgoldenrodyellow'}}>
+        <Card sx={{width: 360, height: 600, backgroundColor: 'lightgoldenrodyellow'}}>
             <CardContent>
                 <BlockField fieldName={"Block nr"} fieldValue={blockInfo.blockNr}
                             onChange={async (e) => await setBlockInfo(e.target.value, "blockNr")} readOnly/>
@@ -26,10 +26,7 @@ const EthereumBlock = ({blockInfo, setBlockInfo, isCorrupted}) => {
                 <BlockField fieldName={"Previous block hash"} fieldValue={blockInfo.prevBlockHash}
                             onChange={async (e) => await setBlockInfo(e.target.value, "prevBlockHash")} readOnly/>
                 <BlockField fieldName={"Hash"} fieldValue={blockInfo.hash} readOnly/>
-                {
-                    isCorrupted ? <Grid container alignItems={"center"}><Grid item><ClearIcon/></Grid></Grid> :
-                        <Grid container alignItems={"center"}><Grid item><CheckIcon/></Grid></Grid>
-                }
+                <Box display={'flex'} justifyContent={'center'}>{isCorrupted ? <ClearIcon/> : <CheckIcon/>}</Box>
             </CardContent>
         </Card>
     </Grid>

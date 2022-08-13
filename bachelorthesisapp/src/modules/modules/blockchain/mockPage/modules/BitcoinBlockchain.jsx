@@ -9,7 +9,7 @@ const defaultBlock = {
     nonce: 0,
     timestamp: Date.now().toString(),
     value: "",
-    prevBlockHash: "000000000000000000000000000000000000000",
+    prevBlockHash: "0000000000000000000000000000000000000000000000000000000000000000",
     hash: ""
 }
 
@@ -80,7 +80,7 @@ const BitcoinBlockchain = () => {
 
     return <Grid container direction="row" justifyContent={"flex-start"} alignItems={"center"}>
         {blocks.map((block, idx) => {
-            return (<Grid item xs={4} key={"btc-block" + idx}>
+            return (<Grid item xs={3} key={"btc-block" + idx}>
                 <BitcoinBlock blockInfo={block} isCorrupted={corruptedArray[idx]}
                               setBlockInfo={async (value, field) => {
                                   const {finalHash, error} = await fetchHash({...block, [field]: value});
@@ -99,7 +99,7 @@ const BitcoinBlockchain = () => {
                 />
             </Grid>)
         })}
-        {blocks.length < 4 && <Grid item xs={4} alignContent={"center"}>
+        {blocks.length < 4 && <Grid item xs={3} alignContent={"center"}>
             <CustomButton>
                 <Button>
                     <ControlPointIcon color={"primary"} onClick={() => addBlocks()}/>

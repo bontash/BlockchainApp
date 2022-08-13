@@ -2,7 +2,6 @@ import EthereumBlock from "./EthereumBlock";
 import {Button, Grid} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import BitcoinBlock from "./BitcoinBlock";
 import {CustomButton} from "../../../../core/ui/CustomButton";
 
 const defaultBlock = {
@@ -12,7 +11,7 @@ const defaultBlock = {
     value: "",
     gasLimit: 0,
     gasUsed: 0,
-    prevBlockHash: "000000000000000000000000000000000000000",
+    prevBlockHash: "0000000000000000000000000000000000000000000000000000000000000000",
     hash: ""
 }
 
@@ -42,22 +41,23 @@ const EthereumBlockchain = () => {
 
     function generateGas() {
         const gasLimit = Math.random()*100;
-        let gasUsed;
-        do {
+        let gasUsed = Math.random()*100;
+        while(gasUsed > gasLimit) {
             gasUsed = Math.random()*100;
-        }while(gasLimit <= gasUsed);
+        }
         return {gasLimit, gasUsed};
     }
 
     async function addBlocks() {
+        const {gasLimit, gasUsed} = generateGas();
         const newBlockchain = [...blocks];
         const newBlock = {
             ...defaultBlock,
             timestamp: Date.now().toString(),
             blockNr: blocks[blocks.length - 1].blockNr + 1,
             prevBlockHash: blocks[blocks.length - 1].hash,
-            gasLimit: generateGas().gasLimit,
-            gasUsed: generateGas().gasUsed,
+            gasLimit: gasLimit,
+            gasUsed: gasUsed,
         }
         const {finalHash, error} = await fetchHash(newBlock);
         newBlockchain.push({...newBlock, hash: finalHash});
@@ -94,9 +94,9 @@ const EthereumBlockchain = () => {
         }
     },[blocks])
 
-    return <Grid container direction="row" justifyContent={"flex-start"} alignItems={"center"}>
+    return <Grid container direction="row" justifyContent={"flex-start"} alignItems={'center'}>
         {blocks.map((block, idx) => {
-            return (<Grid item xs={4} key={"eth-block" + idx}>
+            return (<Grid item xs={3} key={"eth-block" + idx}>
                 <EthereumBlock blockInfo={block} isCorrupted={corruptedArray[idx]}
                               setBlockInfo={async (value, field) => {
                                   const {finalHash, error} = await fetchHash({...block, [field]: value});
@@ -115,7 +115,7 @@ const EthereumBlockchain = () => {
                 />
             </Grid>)
         })}
-        {blocks.length < 4 && <Grid item xs={4} alignContent={"center"}>
+        {blocks.length < 4 && <Grid item xs={3} alignContent={"center"}>
             <CustomButton>
                 <Button>
                     <ControlPointIcon color={"primary"} onClick={() => addBlocks()}/>
