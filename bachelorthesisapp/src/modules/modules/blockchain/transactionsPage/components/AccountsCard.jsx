@@ -5,7 +5,7 @@ import CustomTextField from "../../../../core/ui/CustomTextField";
 
 const AccountsCard = ({onChangeAccount, onChangeValue, accountValue, valueField, onClick}) => {
     return <Grid container alignItems={'center'} justify={'center'} direction={'column'}>
-        <Grid item xs={3}>
+        <Grid item xs={6}>
             <Card sx={{
                 width: 450,
                 height: 260,

@@ -1,5 +1,4 @@
-import Service from "../service/Service";
-import {HashInput, HashType} from "../types/HashInput";
+import {HashInput} from "../types/HashInput";
 import {HashOutput, HashBenchmarks} from "../types/HashOutput";
 import {BitcoinInput} from "../types/BitcoinInput";
 import {toHex, utf8ToBytes} from "ethereum-cryptography/utils";
@@ -8,23 +7,27 @@ import {BitcoinOutput} from "../types/BitcoinOutput";
 import {EthereumInput} from "../types/EthereumInput";
 import {EthereumOutput} from "../types/EthereumOutput";
 import RLP from "rlp";
+import {TransactionInput} from "../types/TransactionInput";
+import {TransactionOutput} from "../types/TransactionOutput";
+import HashService from "../service/HashService";
+import TransactionService from "../service/TransactionService";
 
 export default class Controller {
-    service: Service;
-    serviceFunctions: any;
+    services: { hashService:HashService, transactionService:TransactionService };
+    hashServiceFunctions: any;
 
-    public constructor() {
-        this.service = new Service();
+    public constructor(services) {
+        this.services = services;
         this.initServiceFunctions();
     }
 
     private initServiceFunctions() {
-        this.serviceFunctions = {
-            "simpleSha256": this.service.hashToSimpleSHA256,
-            "simpleRipemd160": this.service.hashToSimpleRIPEMD160,
-            "keccak256": this.service.hashToKeccak256,
-            "doubleSha256": this.service.hashToDoubleSHA256,
-            "shaAndRipe": this.service.hashToSHAandRIPE
+        this.hashServiceFunctions = {
+            "simpleSha256": this.services.hashService.hashToSimpleSHA256,
+            "simpleRipemd160": this.services.hashService.hashToSimpleRIPEMD160,
+            "keccak256": this.services.hashService.hashToKeccak256,
+            "doubleSha256": this.services.hashService.hashToDoubleSHA256,
+            "shaAndRipe": this.services.hashService.hashToSHAandRIPE
         }
     }
 
@@ -34,7 +37,7 @@ export default class Controller {
         console.log(hashTypes)
 
         hashTypes.forEach(hash => {
-            const hashFunc: any = this.serviceFunctions[hash]
+            const hashFunc: any = this.hashServiceFunctions[hash]
             const benchmarks = hashFunc.apply(null, [stringToHash]);
             hashResponse.push(benchmarks);
         })
@@ -42,7 +45,7 @@ export default class Controller {
         return {hashResponse}
     }
 
-    public ethereumEncryption(input:EthereumInput): EthereumOutput {
+    public ethereumEncryption(input: EthereumInput): EthereumOutput {
         const blockNrHex = changeEndianness(toHex(utf8ToBytes(input.blockNr.toString())));
         const nonceHex = changeEndianness(toHex(utf8ToBytes(input.nonce.toString())));
         const timestampHex = changeEndianness(toHex(utf8ToBytes(input.timestamp)));
@@ -51,19 +54,27 @@ export default class Controller {
         const gasLimitHex = changeEndianness(toHex(utf8ToBytes(input.gasLimit.toString())));
         const gasUsedHex = changeEndianness(toHex(utf8ToBytes(input.gasUsed.toString())));
         const rlpString = toHex(RLP.encode(blockNrHex + nonceHex + timestampHex + valueHex + gasLimitHex + gasUsedHex + prevBlockHashHex));
-        const finalHash = this.service.hashToKeccak256(rlpString).hashedString;
+        const finalHash = this.services.hashService.hashToKeccak256(rlpString).hashedString;
         return {finalHash};
     }
 
 
-    public bitcoinEncryption(input:BitcoinInput): BitcoinOutput {
+    public bitcoinEncryption(input: BitcoinInput): BitcoinOutput {
         const blockNrHex = toHex(utf8ToBytes(input.blockNr.toString()));
         const nonceHex = toHex(utf8ToBytes(input.nonce.toString()));
         const timestampHex = toHex(utf8ToBytes(input.timestamp));
         const valueHex = toHex(utf8ToBytes(input.value.toString()));
         const prevBlockHashHex = toHex(utf8ToBytes(input.prevBlockHash));
-        const stringOutput = this.service.hashToDoubleSHA256(blockNrHex + nonceHex + timestampHex + valueHex + prevBlockHashHex).hashedString;
+        const stringOutput = this.services.hashService.hashToDoubleSHA256(blockNrHex + nonceHex + timestampHex + valueHex + prevBlockHashHex).hashedString;
         const finalHash = changeEndianness(stringOutput);
         return {finalHash};
+    }
+
+    public ethereumTransaction({account}: TransactionInput): TransactionOutput {
+        return {};
+    }
+
+    public bitcoinTransaction({account}: TransactionInput): TransactionOutput {
+        return {};
     }
 }
