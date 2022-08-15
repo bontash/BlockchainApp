@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardContent, Grid} from "@mui/material";
+import {Box, Card, CardContent, Grid} from "@mui/material";
 import BlockField from "../components/BlockField";
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
@@ -20,10 +20,7 @@ const BitcoinBlock = ({blockInfo, setBlockInfo, isCorrupted}) => {
                 <BlockField fieldName={"Previous block hash"} fieldValue={blockInfo.prevBlockHash}
                             onChange={async (e) => await setBlockInfo(e.target.value, "prevBlockHash")} readOnly/>
                 <BlockField fieldName={"Hash"} fieldValue={blockInfo.hash} readOnly/>
-                {
-                    isCorrupted ? <Grid container alignItems={"center"}><Grid item><ClearIcon/></Grid></Grid> :
-                        <Grid container alignItems={"center"}><Grid item><CheckIcon/></Grid></Grid>
-                }
+                <Box display={'flex'} justifyContent={'center'}>{isCorrupted ? <ClearIcon/> : <CheckIcon/>}</Box>
             </CardContent>
         </Card>
     </Grid>

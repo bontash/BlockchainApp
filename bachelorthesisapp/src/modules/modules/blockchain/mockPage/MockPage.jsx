@@ -5,11 +5,15 @@ import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
 import BitcoinBlockchain from "./modules/BitcoinBlockchain";
 import StyledChip from "./components/StyledChip";
 import EthereumBlockchain from "./modules/EthereumBlockchain";
+import {PageTitle} from "../../../core/ui/PageTitle";
 
-const Blockchain = () => {
+const MockPage = () => {
     return <ThemeProvider theme={theme}>
         <ParticlesBackground/>
         <NavbarContainer>
+            <PageTitle>
+                Mock blockchains
+            </PageTitle>
             <Grid container direction="column" rowGap={4} justifyContent={"flex-start"}>
                 <Grid item xs={6}>
                     <StyledChip label={'Ethereum blockchain'}/>
@@ -28,4 +32,4 @@ const Blockchain = () => {
     </ThemeProvider>
 }
 
-export default Blockchain;
+export default MockPage;

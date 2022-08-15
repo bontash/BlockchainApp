@@ -6,7 +6,7 @@ import {
     FlipCardInner,
     LogoFrontFlipCard,
     TextFrontFlipCard
-} from "../components/FlipCards";
+} from "../../../core/ui/FlipCards";
 import {Grid, Typography} from "@mui/material";
 
 const HomeCard = ({hash}) => {

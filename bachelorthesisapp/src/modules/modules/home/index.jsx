@@ -1,4 +1,4 @@
-import {MainSection} from "../../core/ui/MainSection";
+import {MainSection} from "./components/MainSection";
 import {Grid, ThemeProvider, Typography} from "@mui/material";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import {StyledDiv} from "../../core/ui/Div";

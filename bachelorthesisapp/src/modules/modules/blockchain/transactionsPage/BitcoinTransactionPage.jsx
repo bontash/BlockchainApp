@@ -6,6 +6,7 @@ import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
 import axios from "axios";
 import * as bitcore from "bitcore-lib";
 import BitcoinAccountsCard from "./components/BitcoinAccountsCard";
+import {PageTitle} from "../../../core/ui/PageTitle";
 
 
 const BitcoinTransactionPage = () => {
@@ -17,7 +18,6 @@ const BitcoinTransactionPage = () => {
 
     async function sendBitcoin() {
         const sochainNetwork = "BTCTEST";
-        //const privateKey = "924R4WnWXQUmgPtfrmGzRgnVafK1UtQGc8WmTPC52NGaZZovpS2";
         const satoshiValue = valueField * 100000000;
         let fee = 0;
         let inputCount = 0;
@@ -78,6 +78,9 @@ const BitcoinTransactionPage = () => {
     return <ThemeProvider theme={theme}>
         <NavbarContainer>
             <ParticlesBackground/>
+            <PageTitle>
+                Bitcoin transactions
+            </PageTitle>
             <BitcoinAccountsCard receiverAccountValue={receiverAccount} senderAccountValue={senderAccount}
                                  onClick={() => sendBitcoin()} privateKeyValue={privateKey}
                                  onChangePrivateKey={(e) => setPrivateKey(e.target.value)}

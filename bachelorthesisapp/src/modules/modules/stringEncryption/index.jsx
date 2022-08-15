@@ -5,6 +5,7 @@ import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground"
 import {theme} from "../../core/ui/theme/themeOptions";
 import CustomizedTables from "./modules/HashResultTable";
 import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
+import {PageTitle} from "../../core/ui/PageTitle";
 
 const fetchEncryptedString = (hashList, stringToEncrypt, setResponse) => {
 
@@ -34,6 +35,9 @@ const StringEncryption = () => {
     return <ThemeProvider theme={theme}>
         <ParticlesBackground/>
         <NavbarContainer>
+            <PageTitle>
+                Encryption
+            </PageTitle>
         <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
             <HashDropdown setHashList={setHash} hashList={hash}/>
             <TextField

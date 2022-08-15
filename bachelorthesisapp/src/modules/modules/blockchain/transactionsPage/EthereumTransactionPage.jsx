@@ -6,6 +6,7 @@ import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
 import AccountsCard from "./components/AccountsCard";
 import {Web3Client} from "./components/Web3Client";
 import TransactionsTable from "./modules/TransactionsTable";
+import {PageTitle} from "../../../core/ui/PageTitle";
 
 const EthereumTransactionPage = () => {
 
@@ -63,6 +64,9 @@ const EthereumTransactionPage = () => {
     return <ThemeProvider theme={theme}>
         <ParticlesBackground/>
         <NavbarContainer>
+            <PageTitle>
+                Ethereum transactions
+            </PageTitle>
             <AccountsCard accountValue={receiverAccount}
                           onChangeAccount={(e) => setReceiverAccount(e.target.value)}
                           valueField={valueField}
