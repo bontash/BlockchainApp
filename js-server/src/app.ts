@@ -9,6 +9,7 @@ import HashService from "./service/HashService";
 import TransactionService from "./service/TransactionService";
 import * as dotenv from 'dotenv';
 import {connectToDatabase} from "./repository/config/mongoose/setup";
+import DataProvider from "./repository/DataProvider";
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ const router = new Router();
 
 const services = {
     hashService: new HashService(),
-    transactionService: new TransactionService()
+    transactionService: new TransactionService(new DataProvider())
 };
 
 const controller = new Controller(services);

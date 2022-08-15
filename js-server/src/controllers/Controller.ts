@@ -7,7 +7,7 @@ import {BitcoinOutput} from "../types/BitcoinOutput";
 import {EthereumInput} from "../types/EthereumInput";
 import {EthereumOutput} from "../types/EthereumOutput";
 import RLP from "rlp";
-import {TransactionInput} from "../types/TransactionInput";
+import {BitcoinTransactionInput, TransactionInput} from "../types/TransactionInput";
 import {TransactionOutput} from "../types/TransactionOutput";
 import HashService from "../service/HashService";
 import TransactionService from "../service/TransactionService";
@@ -74,7 +74,7 @@ export default class Controller {
         return {};
     }
 
-    public bitcoinTransaction({account}: TransactionInput): TransactionOutput {
-        return {};
+    public async bitcoinTransaction({tx_hex}: BitcoinTransactionInput): Promise<any> {
+        return await this.services.transactionService.addBitcoinTransaction(tx_hex);
     }
 }

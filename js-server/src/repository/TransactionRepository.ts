@@ -1,6 +1,6 @@
 
 
-class TransactionRepository {
+export default class TransactionRepository {
     schema:any
 
     constructor(schema) {

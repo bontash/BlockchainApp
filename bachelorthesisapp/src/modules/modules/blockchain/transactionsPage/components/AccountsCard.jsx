@@ -17,9 +17,10 @@ const AccountsCard = ({onChangeAccount, onChangeValue, accountValue, valueField,
                 <CardContent>
                     <Typography>Enter an account:</Typography>
                     <CustomTextField onChange={onChangeAccount} value={accountValue} label={'Receiver account'}
-                                     width={415}/>
+                                     width={415} type={'text'}/>
                     <Typography>Enter a value:</Typography>
-                    <CustomTextField onChange={onChangeValue} value={valueField} label={'Value'} width={415}/>
+                    <CustomTextField onChange={onChangeValue} value={valueField} label={'Value'} width={415}
+                                     type={'text'}/>
                     <AccountCardButton onClick={onClick}/>
                 </CardContent>
             </Card>

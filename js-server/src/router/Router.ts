@@ -54,9 +54,9 @@ export default class Router {
             }
         })
 
-        router.post("/bitcoinTransaction", ({request, response}) => {
+        router.post("/bitcoinTransaction",async ({request, response}) => {
             try {
-                const result = this.controller.bitcoinTransaction(request.body);
+                const result = await this.controller.bitcoinTransaction(request.body);
                 response.status = 200;
                 response.body = result;
             } catch (e) {
@@ -64,5 +64,6 @@ export default class Router {
                 response.body = {error: "Internal server error"};
             }
         })
+
     }
 }
