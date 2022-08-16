@@ -37,11 +37,8 @@ export default function NavbarContainer(props) {
       text: 'Hash',
       icon: <TagIcon />,
       path: `${baseUrl}/hashing`
-    }, {
-      text: 'Database',
-      icon: <StorageIcon />,
-      path: `${baseUrl}/database`
-    }, {
+    },
+    {
       text: 'Blockchain',
       icon: <CurrencyBitcoinIcon />,
       path: `${baseUrl}/blockchain`
@@ -77,7 +74,7 @@ export default function NavbarContainer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' no wrap component='div' color={'#FAF5E4'} fontFamily={'Trebuchet MS'}> Cryptographic hash functions
+          <Typography variant='h6' no wrap component='div' color={'#FAF5E4'} fontFamily={'Trebuchet MS'}> Blockchain technology: an application of cryptographic hash functions
           </Typography>
         </Toolbar>
       </AppBar>

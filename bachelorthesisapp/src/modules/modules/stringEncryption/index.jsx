@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, Grid, TextField, ThemeProvider} from "@mui/material";
+import {Box, Button, TextField, ThemeProvider} from "@mui/material";
 import HashDropdown from "./modules/HashDropdown";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import {theme} from "../../core/ui/theme/themeOptions";

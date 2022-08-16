@@ -27,6 +27,8 @@ const TransactionsTable = () => {
                         <StyledTableCell align="center">Sender account</StyledTableCell>
                         <StyledTableCell align="center">Receiver account</StyledTableCell>
                         <StyledTableCell align="center">Value</StyledTableCell>
+                        <StyledTableCell align="center">Gas used</StyledTableCell>
+                        <StyledTableCell align="center">Block number</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 {/*<TableBody>*/}

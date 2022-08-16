@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Button, ThemeProvider} from "@mui/material";
+import React, { useState} from "react";
+import {ThemeProvider} from "@mui/material";
 import {theme} from "../../../core/ui/theme/themeOptions";
 import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
 import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
@@ -26,7 +26,7 @@ const BitcoinTransactionPage = () => {
             `https://sochain.com/api/v2/get_tx_unspent/${sochainNetwork}/${senderAccount}`
         );
         let totalAmountAvailable = 0;
-        const transaction = new bitcore.Transaction;
+        const transaction = new bitcore.Transaction();
 
         let inputs = [];
         for (const elem of utxos.data.data.txs) {

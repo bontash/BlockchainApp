@@ -7,6 +7,7 @@ import {MainSection} from "../home/components/MainSection";
 import BlockchainPageFlipCard from "./modules/BlockchainPageFlipCard";
 import {PageTitle} from "../../core/ui/PageTitle";
 import {useHistory} from "react-router-dom";
+import {BlockchainPageMainSection} from "./modules/BlockchainPageMainSection";
 
 const BlockchainPage = () => {
 
@@ -24,22 +25,25 @@ const BlockchainPage = () => {
 
     return <ThemeProvider theme={theme}>
         <NavbarContainer>
-            <ParticlesBackground />
+            <ParticlesBackground/>
             <MainSection>
                 <PageTitle>
                     Blockchain main page
                 </PageTitle>
-                    <Typography fontSize={'150%'}>
-                        Blockchain technology encompasses a series of functionalities to ensure data protection, at the same time
-                        allowing a semi-transparency to exist. Its core mechanisms can be described as:
+                <BlockchainPageMainSection>
+                    <Typography fontSize={'115%'}>
+                            Blockchain technology encompasses a series of functionalities to ensure data protection, at the same
+                            time
+                            allowing a semi-transparency to exist. Its core mechanisms can be described as:
                     </Typography>
-                <p />
+                </BlockchainPageMainSection>
+                <p/>
                 <Grid container direction={'row'} justifyContent={'space-evenly'} alignItems={'center'}>
                     <Grid item>
-                        <BlockchainPageFlipCard pageName={'Mock'}/>
+                        <BlockchainPageFlipCard pageName={'Mock'} description={"Mock page"}/>
                     </Grid>
                     <Grid item>
-                        <BlockchainPageFlipCard pageName={'Transactions'}/>
+                        <BlockchainPageFlipCard pageName={'Transactions'} description={"Transactions page"}/>
                     </Grid>
                 </Grid>
             </MainSection>

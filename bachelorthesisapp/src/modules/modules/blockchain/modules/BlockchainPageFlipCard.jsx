@@ -3,19 +3,17 @@ import {
     FlipCard,
     FlipCardBack,
     FlipCardFront,
-    FlipCardInner,
-    LogoFrontFlipCard,
-    TextFrontFlipCard
+    FlipCardInner
 } from "../../../core/ui/FlipCards";
 import {CustomButton} from "../../../core/ui/CustomButton";
-import {Button, Grid} from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 
-const BlockchainPageFlipCard = ({onClick, pageName}) => {
+const BlockchainPageFlipCard = ({onClick, pageName, description}) => {
     return <Grid item xl={3} m={6}>
         <FlipCard>
             <FlipCardInner>
                 <FlipCardFront>
-                    <p>absdf</p>
+                    <Typography>{description}</Typography>
                 </FlipCardFront>
                 <FlipCardBack>
                     <CustomButton>
