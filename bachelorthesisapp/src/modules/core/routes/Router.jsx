@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Home from "../../modules/home";
 import StringEncryption from "../../modules/stringEncryption";
-import HashProperties from "../../modules/hashProperties";
+import HashProperties from "../../modules/hashProperties/HashPropertiesPage";
 import Database from "../../modules/database";
 import EthereumTransactionPage from "../../modules/blockchain/transactionsPage/EthereumTransactionPage";
 import BitcoinTransactionPage from "../../modules/blockchain/transactionsPage/BitcoinTransactionPage";

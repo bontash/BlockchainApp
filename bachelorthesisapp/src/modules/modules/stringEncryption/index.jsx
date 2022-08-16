@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Box, Button, TextField, ThemeProvider} from "@mui/material";
-import HashDropdown from "./modules/HashDropdown";
+import HashDropdown from "../../core/ui/HashDropdown";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import {theme} from "../../core/ui/theme/themeOptions";
 import CustomizedTables from "./modules/HashResultTable";
@@ -63,3 +63,4 @@ const StringEncryption = () => {
 }
 
 export default StringEncryption;
+export {fetchEncryptedString};
