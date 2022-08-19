@@ -38,7 +38,6 @@ export default class Controller {
         hashTypes.forEach(hash => {
             const hashFunc: any = this.hashServiceFunctions[hash];
             const benchmarks = hashFunc.apply(null, [stringToHash]);
-            console.log("Benchmarks: ", benchmarks);
             hashResponse.push(benchmarks);
         })
 

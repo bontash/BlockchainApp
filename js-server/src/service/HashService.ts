@@ -68,7 +68,6 @@ export default class HashService {
         const nrBitsHash = 256;
         const timeInterval = endTime - startTime;
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
-        console.log("Distance: ",dljs.distance("2345tyumghji65rfgbhjki", "3efbu8njfetjukkffr"));
         const avalanche = AvalancheEffect(stringToHash, sha256DoubleHashing, hash, nrBitsHash);
         return {
             benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},

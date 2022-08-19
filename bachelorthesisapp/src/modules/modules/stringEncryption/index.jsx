@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Alert, Box, Button, Snackbar, TextField} from "@mui/material";
+import {Box, Button, Snackbar, TextField} from "@mui/material";
 import HashDropdown from "../../core/ui/HashDropdown";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import CustomizedTables from "./modules/HashResultTable";
@@ -36,15 +36,11 @@ const StringEncryption = () => {
     }, [])
 
 
-    useEffect(() => {
-        console.log(encryptionResponse)
-    }, [encryptionResponse])
-
     return <>
         <ParticlesBackground/>
         <Snackbar sx={{maxWidth: 800}} message={"Why these functions? These are the only hash functions used in the presented blockchains." +
         "The simple hashes are implemented with the ethereum-cryptography library and the composite ones are self-made. Only text and hashes can be encrypted " +
-        "here"} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        "here, because these are the only options available on the blockchain. It automatically detects if the input data is a simple string or a hash."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
         />
         <PageTitle>
             Encryption
@@ -64,7 +60,7 @@ const StringEncryption = () => {
             <Button variant={'contained'} onClick={() => {
                 fetchEncryptedString(hash, stringToEncrypt, setEncryptionResponse)
             }}>
-                Hash string
+                Hash data
             </Button>
             <p></p>
             <CustomizedTables rows={encryptionResponse}/>
