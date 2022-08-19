@@ -25,6 +25,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mongoose": "^6.5.2",
+    "mongoose-transactions-typescript": "^1.1.4",
     "moongose": "^1.0.0",
     "rlp": "^3.0.0",
     "web3": "^1.7.4"

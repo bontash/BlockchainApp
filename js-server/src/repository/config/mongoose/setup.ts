@@ -1,17 +1,20 @@
 import * as dotenv from 'dotenv'
 import * as mongoose from "mongoose";
-import {ITransaction, transactionSchema} from "../schemas/Transaction";
+import {ITransaction, transactionSchema} from "../schemas/BlockchainTransaction";
 
 export type SchemaList = {
-    transactions?: mongoose.Model<ITransaction>
+    bitcoinTransactions?: mongoose.Model<ITransaction>,
+    ethereumTransactions?: mongoose.Model<ITransaction>
 }
 
 export const schemaList: SchemaList = {};
 
 export const schemaNames: {
-    transactions: string
+    bitcoinTransactions: string,
+    ethereumTransactions: string
 } = {
-    transactions: 'Transactions'
+    bitcoinTransactions: 'BitcoinTransactions',
+    ethereumTransactions: 'EthereumTransactions'
 }
 
 export async function connectToDatabase() {
@@ -20,6 +23,8 @@ export async function connectToDatabase() {
     //@ts-ignore
     mongoose.connect(dbConnection, {useNewUrlParser: true});
 
-    const transactionCollection = new mongoose.Schema<ITransaction>(transactionSchema);
-    schemaList.transactions = mongoose.model(schemaNames.transactions, transactionCollection);
+    const bitcoinTransactionCollection = new mongoose.Schema<ITransaction>(transactionSchema);
+    const ethereumTransactionCollection = new mongoose.Schema<ITransaction>(transactionSchema);
+    schemaList.bitcoinTransactions = mongoose.model(schemaNames.bitcoinTransactions, bitcoinTransactionCollection);
+    schemaList.ethereumTransactions = mongoose.model(schemaNames.ethereumTransactions, ethereumTransactionCollection);
 }

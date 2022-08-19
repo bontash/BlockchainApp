@@ -1,4 +1,4 @@
-import mongoose, {Schema, Types} from "mongoose";
+import {Types} from "mongoose";
 
 export interface ITransaction {
     _id?: Types.ObjectId,
