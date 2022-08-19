@@ -24,8 +24,10 @@ const HashProperties = () => {
     }, [])
     return <>
         <ParticlesBackground />
-        <Snackbar sx={{maxWidth: 600}} message={"This web-application aims to provide the user a deeper understanding of how cryptography\n" +
-        "                and blockchain are related. At the core, there are 3 cryptographic hash functions, presented below."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        <Snackbar sx={{maxWidth: 600}} message={"For a user who wants more in-depth knowledge about properties of the various hash functions " +
+        "applied in the chain, for a more educated choice of what blockchain to use, this page provides basic characteristics of those functions. A " +
+        "user can select more than one hash type, to see a clear comparison between them. The avalanche effect is a function created by me " +
+        "and the non-correlation is computed using the Damerau-Levenshtein distance."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
         />
             <PageTitle>Cryptographic hash functions properties</PageTitle>
             <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
