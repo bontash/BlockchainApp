@@ -17,12 +17,12 @@ export default class HashService {
         const startTime = performance.now();
         const hash = sha256SimpleHashing(stringToHash);
         const endTime = performance.now();
-        const nrBitsHash = 256;
+        const nrBitsHash = stringToHash.length;
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
         const timeInterval = endTime - startTime;
         const avalanche = AvalancheEffect(stringToHash, sha256SimpleHashing, hash, nrBitsHash);
         return {
-            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},
+            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche, length: nrBitsHash},
             hashedString: hash,
             stringToHash,
             typeOfHash: "Simple SHA-256"
@@ -32,13 +32,13 @@ export default class HashService {
     hashToSimpleRIPEMD160(stringToHash: string): HashBenchmarks {
         const startTime = performance.now();
         const hash = ripemd160SimpleHashing(stringToHash);
-        const nrBitsHash = 160;
+        const nrBitsHash = stringToHash.length;
         const endTime = performance.now();
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
         const timeInterval = endTime - startTime;
         const avalanche = AvalancheEffect(stringToHash, ripemd160SimpleHashing, hash, nrBitsHash);
         return {
-            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},
+            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche, length: nrBitsHash},
             hashedString: hash,
             stringToHash,
             typeOfHash: "Simple RIPEMD-160"
@@ -50,11 +50,11 @@ export default class HashService {
         const hash = keccak256Hashing(stringToHash);
         const endTime = performance.now();
         const timeInterval = endTime - startTime;
-        const nrBitsHash = 256;
+        const nrBitsHash = stringToHash.length;
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
         const avalanche = AvalancheEffect(stringToHash, keccak256Hashing, hash, nrBitsHash);
         return {
-            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},
+            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche, length: nrBitsHash},
             hashedString: hash,
             stringToHash,
             typeOfHash: "Keccak-256"
@@ -65,12 +65,12 @@ export default class HashService {
         const startTime = performance.now();
         const hash = sha256DoubleHashing(stringToHash);
         const endTime = performance.now();
-        const nrBitsHash = 256;
+        const nrBitsHash = stringToHash.length;
         const timeInterval = endTime - startTime;
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
         const avalanche = AvalancheEffect(stringToHash, sha256DoubleHashing, hash, nrBitsHash);
         return {
-            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},
+            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche, length: nrBitsHash},
             hashedString: hash,
             stringToHash,
             typeOfHash: "Double SHA-256"
@@ -82,11 +82,11 @@ export default class HashService {
         const hash = sha256Ripemd160Hashing(stringToHash);
         const endTime = performance.now();
         const timeInterval = endTime - startTime;
-        const nrBitsHash = 160;
+        const nrBitsHash = stringToHash.length;
         const nonCorrelation = (dljs.distance(hash, stringToHash) / nrBitsHash) * 100;
         const avalanche = AvalancheEffect(stringToHash, sha256Ripemd160Hashing, hash, nrBitsHash);
         return {
-            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche},
+            benchmarks: {executionTime: timeInterval, nonCorrelation: nonCorrelation, avalancheEffect: avalanche, length: nrBitsHash},
             hashedString: hash,
             stringToHash,
             typeOfHash: "SHA-256 and RIPEMD-160"

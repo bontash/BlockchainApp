@@ -1,13 +1,18 @@
 import {hex2Binary} from "./Hex2Binary"
+import {bytesToUtf8, utf8ToBytes} from "ethereum-cryptography/utils";
 
 export const AvalancheEffect = (stringToHash, hashFct, hash, nrOfBits) => {
     let differentBits = 0;
-    const stringToHashModified = stringToHash+"a";
-    const modifiedStringHash = hashFct(stringToHashModified);
-    const stringToHashModifiesBits = hex2Binary(modifiedStringHash);
-    const stringToHashBits = hex2Binary(hash);
-    for (let i = 0; i < stringToHashBits.length; i++) {
-        if (stringToHashBits[i] != stringToHashModifiesBits[i])
+    const stringToHashBytes = utf8ToBytes(stringToHash);
+    let modifiedStringBytes = stringToHashBytes;
+    modifiedStringBytes[stringToHashBytes.length - 1] = stringToHashBytes[stringToHashBytes.length - 1] + 1;
+    const modifiedString = bytesToUtf8(modifiedStringBytes);
+    console.log(modifiedString);
+    const modifiedStringHex = hashFct(modifiedString);
+    const modifiedStringHexBits = hex2Binary(modifiedStringHex);
+    const hashBits = hex2Binary(hash);
+    for (let i = 0; i < hashBits.length; i++) {
+        if (hashBits[i] != modifiedStringHexBits[i])
             differentBits += 1;
     }
     return (differentBits / nrOfBits) * 100;

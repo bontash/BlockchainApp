@@ -16,6 +16,7 @@ const HashPropertiesTable = ({rows}) => {
                     <TableRow>
                         <StyledTableCell align="center">Hash function</StyledTableCell>
                         <StyledTableCell align="center">Resulted hash</StyledTableCell>
+                        <StyledTableCell align="center">Length</StyledTableCell>
                         <StyledTableCell align="center">Speed of execution</StyledTableCell>
                         <StyledTableCell align="center">Non-correlation %</StyledTableCell>
                         <StyledTableCell align="center">Avalanche effect %</StyledTableCell>
@@ -26,6 +27,7 @@ const HashPropertiesTable = ({rows}) => {
                         <StyledTableRow key={row.name}>
                             <StyledTableCell align="center" component="th" scope="row">{row.typeOfHash}</StyledTableCell>
                             <StyledTableCell align="center">{row.hashedString}</StyledTableCell>
+                            <StyledTableCell align="center">{row.benchmarks.length}</StyledTableCell>
                             <StyledTableCell align="center">{row.benchmarks.executionTime}</StyledTableCell>
                             <StyledTableCell align="center">{row.benchmarks.nonCorrelation}</StyledTableCell>
                             <StyledTableCell align="center">{row.benchmarks.avalancheEffect}</StyledTableCell>
