@@ -39,8 +39,8 @@ const StringEncryption = () => {
     return <>
         <ParticlesBackground/>
         <Snackbar sx={{maxWidth: 800}} message={"Why these functions? These are the only hash functions used in the presented blockchains." +
-        "The simple hashes are implemented with the ethereum-cryptography library and the composite ones are self-made. Only text and hashes can be encrypted " +
-        "here, because these are the only options available on the blockchain. It automatically detects if the input data is a simple string or a hash."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        "The simple hashes are implemented with the ethereum-cryptography library and the composite ones are self-made. Only strings and hashes can be encrypted " +
+        "here, because these are the only options available on the blockchain. It automatically detects if the input data is a simple string or a hash."} autoHideDuration={35000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
         />
         <PageTitle>
             Encryption
