@@ -60,33 +60,19 @@ const Home = () => {
     return <>
         <StyledDiv>
             <ParticlesBackground/>
-            <Snackbar sx={{maxWidth: 600}} message={"This web-application aims to provide the user a deeper understanding of how cryptography\n" +
-            "                and blockchain are related. At the core, there are 3 cryptographic hash functions, presented below."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-                      />
+            <Snackbar sx={{maxWidth: 600}}
+                      message={"This web-application aims to provide the user a deeper understanding of how cryptography\n" +
+                      "                and blockchain are related. At the core, there are 3 cryptographic hash functions, presented below, along with the blockchains " +
+                      " of interest. The hash functions are used for various " +
+                      " reasons, like account address encoding and transaction encryption. Here are pages for both a user who wants to see only blockchain " +
+                      " capabilities or one which wishes to see the hash functions behind them."}
+                      autoHideDuration={40000} open={open} onClose={handleClose}
+                      anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+            />
             <PageTitle>
                 Home page
             </PageTitle>
-            <MainSection>
 
-                <Typography fontSize={'140%'}>
-                    Cryptographic hash functions are at the core of this technology. There are 3 functions
-                    used for various reasons. The below flip cards provide a brief description about all of them.
-                    Here, there are pages for each type of user: a more practical one,
-                    who wishes
-                    to see the practical aspects of the hashes, without being lost in details, or a more theoretical
-                    one,
-                    which wants a deeper understanding of the concepts, for a better use of the technology.
-                </Typography>
-                <Typography fontSize={'140%'}>
-                    From this page,
-                    you can navigate to a selection of pages where you can see the hash functions and the blockchain
-                    in action. On
-                    this page, brief descriptions of the hashes and the blockchain platforms are provided.
-                </Typography>
-                <Typography fontSize={'140%'}>
-                    Enjoy!
-                </Typography>
-            </MainSection>
             <Grid container justifyContent={"center"}>
                 {
                     flipCardFront.map((hash, idx) => {
