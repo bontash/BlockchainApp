@@ -1,13 +1,16 @@
 import {MainSection} from "./components/MainSection";
-import {Grid, ThemeProvider, Typography} from "@mui/material";
+import {Grid, Snackbar, SnackbarContent, Stack, Typography} from "@mui/material";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
 import {StyledDiv} from "../../core/ui/Div";
 import HomeCard from "./modules/HomeCard";
-import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
-import {theme} from "../../core/ui/theme/themeOptions";
 import {PageTitle} from "../../core/ui/PageTitle";
+import {useEffect, useState} from "react";
+
 
 const Home = () => {
+
+    const [open, setOpen] = useState(false);
+
     const flipCardFront = [
         {
             name: "SHA-256",
@@ -24,7 +27,7 @@ const Home = () => {
         },
         {
             name: "Keccak-256",
-            description: "    It is part of the newest family of cryptographic hash functions, SHA-3; this family uses a sponge construction, " +
+            description: "    It is part of the newest family of cryptographic hash functions, SHA-3; it uses a sponge construction, " +
                 "which is comprised of 2 phases: absorbing and squeezing. In the first stage, the message is processed and in the second it is 'squeezed'" +
                 " in the desired format. The standardized algorithm is SHA-3, but Keccak is used in Ethereum."
         },
@@ -44,48 +47,56 @@ const Home = () => {
         }
     ]
 
-    return <ThemeProvider theme={theme}>
-        <NavbarContainer>
-            <StyledDiv>
-                <ParticlesBackground/>
-                <PageTitle>
-                    Home page
-                </PageTitle>
-                <MainSection>
-                    <Typography fontSize={'140%'}>
-                        This web-application aims to provide the user a deeper understanding of how cryptography
-                        and blockchain are related.
-                    </Typography>
-                    <Typography fontSize={'140%'}>
-                        Cryptographic hash functions are at the core of this technology. There are 3 functions
-                        used for various reasons. The below flip cards provide a brief description about all of them.
-                        Here, there are pages for each type of user: a more practical one,
-                        who wishes
-                        to see the practical aspects of the hashes, without being lost in details, or a more theoretical
-                        one,
-                        which wants a deeper understanding of the concepts, for a better use of the technology.
-                    </Typography>
-                    <Typography fontSize={'140%'}>
-                        From this page,
-                        you can navigate to a selection of pages where you can see the hash functions and the blockchain
-                        in action. On
-                        this page, brief descriptions of the hashes and the blockchain platforms are provided.
-                    </Typography>
-                    <Typography fontSize={'140%'}>
-                        Enjoy!
-                    </Typography>
-                </MainSection>
-                <Grid container justifyContent={"center"}>
-                    {
-                        flipCardFront.map((hash, idx) => {
-                            return <HomeCard key={`home-card-${idx}`} hash={hash}/>
-                        })
-                    }
-                </Grid>
+    function handleClose() {
+        setOpen(false);
+    }
 
-            </StyledDiv>
-        </NavbarContainer>
-    </ThemeProvider>
+
+    useEffect(() => {
+        setOpen(true)
+    }, [])
+
+
+    return <>
+        <StyledDiv>
+            <ParticlesBackground/>
+            <Snackbar sx={{maxWidth: 600}} message={"This web-application aims to provide the user a deeper understanding of how cryptography\n" +
+            "                and blockchain are related. At the core, there are 3 cryptographic hash functions, presented below."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+                      />
+            <PageTitle>
+                Home page
+            </PageTitle>
+            <MainSection>
+
+                <Typography fontSize={'140%'}>
+                    Cryptographic hash functions are at the core of this technology. There are 3 functions
+                    used for various reasons. The below flip cards provide a brief description about all of them.
+                    Here, there are pages for each type of user: a more practical one,
+                    who wishes
+                    to see the practical aspects of the hashes, without being lost in details, or a more theoretical
+                    one,
+                    which wants a deeper understanding of the concepts, for a better use of the technology.
+                </Typography>
+                <Typography fontSize={'140%'}>
+                    From this page,
+                    you can navigate to a selection of pages where you can see the hash functions and the blockchain
+                    in action. On
+                    this page, brief descriptions of the hashes and the blockchain platforms are provided.
+                </Typography>
+                <Typography fontSize={'140%'}>
+                    Enjoy!
+                </Typography>
+            </MainSection>
+            <Grid container justifyContent={"center"}>
+                {
+                    flipCardFront.map((hash, idx) => {
+                        return <HomeCard key={`home-card-${idx}`} hash={hash}/>
+                    })
+                }
+            </Grid>
+
+        </StyledDiv>
+    </>
 
 }
 

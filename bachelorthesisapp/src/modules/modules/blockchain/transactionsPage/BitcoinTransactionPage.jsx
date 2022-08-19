@@ -1,8 +1,5 @@
 import React, { useState} from "react";
-import {ThemeProvider} from "@mui/material";
-import {theme} from "../../../core/ui/theme/themeOptions";
 import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
-import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
 import axios from "axios";
 import * as bitcore from "bitcore-lib";
 import BitcoinAccountsCard from "./components/BitcoinAccountsCard";
@@ -75,8 +72,7 @@ const BitcoinTransactionPage = () => {
 
     }
 
-    return <ThemeProvider theme={theme}>
-        <NavbarContainer>
+    return <>
             <ParticlesBackground/>
             <PageTitle>
                 Bitcoin transactions
@@ -87,8 +83,7 @@ const BitcoinTransactionPage = () => {
                                  onChangeReceiverAccount={(e) => setReceiverAccount(e.target.value)}
                                  onChangeSenderAccount={(e) => setSenderAccount(e.target.value)}
                                  onChangeValue={(e) => setValueField(e.target.value)} valueField={valueField}/>
-        </NavbarContainer>
-    </ThemeProvider>
+    </>
 
 }
 

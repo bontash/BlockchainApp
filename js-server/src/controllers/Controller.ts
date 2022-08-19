@@ -32,13 +32,13 @@ export default class Controller {
     }
 
     public encrypt({stringToHash, hashTypes}: HashInput): HashOutput {
-        console.log(stringToHash);
+
         const hashResponse: HashBenchmarks[] = [];
-        console.log(hashTypes)
 
         hashTypes.forEach(hash => {
-            const hashFunc: any = this.hashServiceFunctions[hash]
+            const hashFunc: any = this.hashServiceFunctions[hash];
             const benchmarks = hashFunc.apply(null, [stringToHash]);
+            console.log("Benchmarks: ", benchmarks);
             hashResponse.push(benchmarks);
         })
 

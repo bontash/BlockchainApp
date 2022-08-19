@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {Box, Button, TextField, ThemeProvider} from "@mui/material";
+import {Alert, Box, Button, Snackbar, TextField} from "@mui/material";
 import HashDropdown from "../../core/ui/HashDropdown";
 import {ParticlesBackground} from "../../core/ui/background/ParticlesBackground";
-import {theme} from "../../core/ui/theme/themeOptions";
 import CustomizedTables from "./modules/HashResultTable";
-import NavbarContainer from "../../core/ui/navbar/navbar/NavbarContainer";
 import {PageTitle} from "../../core/ui/PageTitle";
 
 const fetchEncryptedString = (hashList, stringToEncrypt, setResponse) => {
@@ -25,19 +23,32 @@ const fetchEncryptedString = (hashList, stringToEncrypt, setResponse) => {
 const StringEncryption = () => {
     const [hash, setHash] = useState([]);
     const [stringToEncrypt, setStringToEncrypt] = useState("");
-
     const [encryptionResponse, setEncryptionResponse] = useState([]);
+    const [open, setOpen] = useState(false);
 
-    useEffect(()=>{
+    function handleClose() {
+        setOpen(false);
+    }
+
+
+    useEffect(() => {
+        setOpen(true)
+    }, [])
+
+
+    useEffect(() => {
         console.log(encryptionResponse)
-    },[encryptionResponse])
+    }, [encryptionResponse])
 
-    return <ThemeProvider theme={theme}>
+    return <>
         <ParticlesBackground/>
-        <NavbarContainer>
-            <PageTitle>
-                Encryption
-            </PageTitle>
+        <Snackbar sx={{maxWidth: 800}} message={"Why these functions? These are the only hash functions used in the presented blockchains." +
+        "The simple hashes are implemented with the ethereum-cryptography library and the composite ones are self-made. Only text and hashes can be encrypted " +
+        "here"} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        />
+        <PageTitle>
+            Encryption
+        </PageTitle>
         <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
             <HashDropdown setHashList={setHash} hashList={hash}/>
             <TextField
@@ -58,8 +69,7 @@ const StringEncryption = () => {
             <p></p>
             <CustomizedTables rows={encryptionResponse}/>
         </Box>
-        </NavbarContainer>
-    </ThemeProvider>
+    </>
 }
 
 export default StringEncryption;

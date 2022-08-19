@@ -12,7 +12,9 @@ export default class Router {
     private initEndpointMapping(router) {
         router.post("/hashing", ({request, response}) => {
             try {
+                console.log(request.body);
                 const result = this.controller.encrypt(request.body);
+                console.log(result);
                 response.status = 200;
                 response.body = result;
             } catch (e) {

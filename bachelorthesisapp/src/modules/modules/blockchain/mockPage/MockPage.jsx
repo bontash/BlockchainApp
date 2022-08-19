@@ -1,16 +1,29 @@
 import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
-import {theme} from "../../../core/ui/theme/themeOptions";
-import {Grid, ThemeProvider} from "@mui/material";
-import NavbarContainer from "../../../core/ui/navbar/navbar/NavbarContainer";
+import {Grid, Snackbar, ThemeProvider} from "@mui/material";
 import BitcoinBlockchain from "./modules/BitcoinBlockchain";
 import StyledChip from "./components/StyledChip";
 import EthereumBlockchain from "./modules/EthereumBlockchain";
 import {PageTitle} from "../../../core/ui/PageTitle";
+import {useEffect, useState} from "react";
 
 const MockPage = () => {
-    return <ThemeProvider theme={theme}>
+    const [open, setOpen] = useState(false);
+
+    function handleClose() {
+        setOpen(false);
+    }
+
+
+    useEffect(() => {
+        setOpen(true)
+    }, [])
+
+
+    return <>
         <ParticlesBackground/>
-        <NavbarContainer>
+        <Snackbar sx={{maxWidth: 600}} message={"This web-application aims to provide the user a deeper understanding of how cryptography\n" +
+        "                and blockchain are related. At the core, there are 3 cryptographic hash functions, presented below."} autoHideDuration={15000} open={open} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        />
             <PageTitle>
                 Mock blockchains
             </PageTitle>
@@ -28,8 +41,7 @@ const MockPage = () => {
                     <BitcoinBlockchain/>
                 </Grid>
             </Grid>
-        </NavbarContainer>
-    </ThemeProvider>
+    </>
 }
 
 export default MockPage;

@@ -16,7 +16,19 @@ export function sha256Ripemd160Hashing(userString : string) {
 
 export function sha256SimpleHashing(userString : string) {
     console.log(userString);
-    const hash = sha256(utf8ToBytes(userString));
+    let intValue, hash;
+    let isHash = false;
+    try {
+        intValue = parseInt(userString, 16);
+        isHash = true;
+    } catch(e) {
+        console.log(e);
+    }
+    if (isHash) {
+         hash = sha256(utf8ToBytes(intValue));
+         console.log(intValue);
+    }
+    else hash = sha256(utf8ToBytes(userString));
     console.log(utf8ToBytes(userString));
     console.log(hash);
     return toHex(hash);

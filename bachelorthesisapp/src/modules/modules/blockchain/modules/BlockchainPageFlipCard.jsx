@@ -7,13 +7,14 @@ import {
 } from "../../../core/ui/FlipCards";
 import {CustomButton} from "../../../core/ui/CustomButton";
 import {Button, Grid, Typography} from "@mui/material";
+import {BlockchainFlipCardText} from "../transactionsPage/components/BlockchainFlipCardText";
 
 const BlockchainPageFlipCard = ({onClick, pageName, description}) => {
     return <Grid item xl={3} m={6}>
         <FlipCard>
             <FlipCardInner>
                 <FlipCardFront>
-                    <Typography>{description}</Typography>
+                        <BlockchainFlipCardText alignContent={'center'}>{description}</BlockchainFlipCardText>
                 </FlipCardFront>
                 <FlipCardBack>
                     <CustomButton>

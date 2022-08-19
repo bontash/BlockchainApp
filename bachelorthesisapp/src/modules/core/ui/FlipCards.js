@@ -61,4 +61,5 @@ export const FlipCardBack = styled.div`
   border-radius: 25px;
   border-style: solid;
   border-color: black;
+  text-indent: 20px;
 `
