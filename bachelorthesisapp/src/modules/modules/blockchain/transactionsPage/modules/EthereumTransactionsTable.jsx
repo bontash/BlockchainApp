@@ -6,21 +6,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import {StyledTableCell} from "../../../../core/ui/StyledTableCell";
 
-const TransactionsTable = () => {
+const EthereumTransactionsTable = () => {
 
-
-    // function mineData(data) {
-    //     const hashedData = Web3Client.eth.abi.encodeFunctionSignature(data);
-    //     Web3Client.eth.sendTransaction({
-    //         from: '0x34e8dEe6163a1383415380b5F99AFC694B9DCEFF',
-    //         data: hashedData // deploying a contract
-    //     }, function (error, hash) {
-    //         console.log("error: " + error + " and hash: " + hash);
-    //     });
-    // }
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{minWidth: 700}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center">Transaction hash</StyledTableCell>
@@ -46,4 +36,4 @@ const TransactionsTable = () => {
 
 }
 
-export default TransactionsTable;
+export default EthereumTransactionsTable;

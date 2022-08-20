@@ -8,23 +8,15 @@ export default class BitcoinTransactionRepository {
         this.schema = schema;
     }
 
-    async createBitcoinTransactions(bitcoinTransactions: ITransaction[]): Promise<ITransaction[]> {
-        // @ts-ignore
-        return await this.schema.bitcoinTransactions.insertMany(bitcoinTransactions);
+    async createBitcoinTransaction(bitcoinTransaction: ITransaction): Promise<any> {
+        return await this.schema.bitcoinTransactions?.insertMany([bitcoinTransaction]).then(data => {
+            if (data.length > 1) return data[0];
+            return null;
+        }).catch(err => console.log(err));
     }
 
-    async getBitcoinTransactionById(bitcoinTransactionId: string): Promise<ITransaction[]> {
-        // @ts-ignore
-        return await this.schema.bitcoinTransactions.findById(bitcoinTransactionId);
-    }
-
-    async createEthereumTransactions(ethereumTransactions: ITransaction[]): Promise<ITransaction[]> {
-        // @ts-ignore
-        return await this.schema.ethereumTransactions.insertMany(ethereumTransactions);
-    }
-
-    async getEthereumTransactionById(ethereumTransactionId: string): Promise<ITransaction[]> {
-        // @ts-ignore
-        return await this.schema.ethereumTransactions.findById(ethereumTransactionId);
+    async getAllBitcoinTransactions(): Promise<any> {
+        const response = await this.schema.bitcoinTransactions?.find();
+        return response;
     }
 }

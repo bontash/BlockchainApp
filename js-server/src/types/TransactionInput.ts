@@ -1,7 +1,4 @@
-export type TransactionInput = {
-    account: string
-}
-
 export type BitcoinTransactionInput = {
-    tx_hex: number
+    tx_hex: string,
+    accountID:string
 }

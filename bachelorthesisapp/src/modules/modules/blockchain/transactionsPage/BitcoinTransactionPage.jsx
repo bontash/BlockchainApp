@@ -1,10 +1,21 @@
-import React, { useState} from "react";
+import React, {useState} from "react";
 import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
 import axios from "axios";
 import * as bitcore from "bitcore-lib";
 import BitcoinAccountsCard from "./components/BitcoinAccountsCard";
 import {PageTitle} from "../../../core/ui/PageTitle";
+import BitcoinTransactionsTable from "./modules/BitcoinTransactionsTable";
 
+const fetchTransactions = (setResponse) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+    };
+
+    fetch(`http://localhost:3001/bitcoinTransaction`, requestOptions)
+        .then(response => console.log("Response:", response ))
+        .then(data => setResponse(data.bitcoinTransactions)).catch(error=> console.log("Error: ",error));
+}
 
 const BitcoinTransactionPage = () => {
 
@@ -12,6 +23,8 @@ const BitcoinTransactionPage = () => {
     const [valueField, setValueField] = useState("");
     const [senderAccount, setSenderAccount] = useState("");
     const [privateKey, setPrivateKey] = useState("");
+    const [rows, setRows] = useState([]);
+    let transactionId;
 
     async function sendBitcoin() {
         const sochainNetwork = "BTCTEST";
@@ -37,8 +50,6 @@ const BitcoinTransactionPage = () => {
             inputCount += 1;
             inputs.push(utxo);
         }
-        console.log(inputs);
-
         let transactionSize = inputCount * 146 + outputCount * 34 + 10 - inputCount;
         // Check if we have enough funds to cover the transaction and the fees assuming we want to pay 20 satoshis per byte
 
@@ -63,28 +74,30 @@ const BitcoinTransactionPage = () => {
             method: "POST",
             url: `http://localhost:3001/bitcoinTransaction`,
             headers: {'Content-Type': 'application/json'},
-            data: JSON.stringify({tx_hex: serializedTransaction})
+            data: JSON.stringify({tx_hex: serializedTransaction, accountID: senderAccount})
         }
         const result = await axios(body);
-        console.log("Result:",result.data.data);
-        console.log("Result.data:",result.data);
-        return result.data.data;
-
+        transactionId = result.data.data.txid;
+        fetchTransactions(setRows);
+        console.log("Rows: ",rows);
     }
 
-    return <>
-            <ParticlesBackground/>
-            <PageTitle>
-                Bitcoin transactions
-            </PageTitle>
-            <BitcoinAccountsCard receiverAccountValue={receiverAccount} senderAccountValue={senderAccount}
-                                 onClick={() => sendBitcoin()} privateKeyValue={privateKey}
-                                 onChangePrivateKey={(e) => setPrivateKey(e.target.value)}
-                                 onChangeReceiverAccount={(e) => setReceiverAccount(e.target.value)}
-                                 onChangeSenderAccount={(e) => setSenderAccount(e.target.value)}
-                                 onChangeValue={(e) => setValueField(e.target.value)} valueField={valueField}/>
-    </>
 
+    return <>
+        <ParticlesBackground/>
+        <PageTitle>
+            Bitcoin transactions
+        </PageTitle>
+        <BitcoinAccountsCard receiverAccountValue={receiverAccount} senderAccountValue={senderAccount}
+                             onClick={() => sendBitcoin()} privateKeyValue={privateKey}
+                             onChangePrivateKey={(e) => setPrivateKey(e.target.value)}
+                             onChangeReceiverAccount={(e) => setReceiverAccount(e.target.value)}
+                             onChangeSenderAccount={(e) => setSenderAccount(e.target.value)}
+                             onChangeValue={(e) => setValueField(e.target.value)} valueField={valueField}/>
+        <p/>
+        <BitcoinTransactionsTable rows={rows}/>
+    </>
 }
+
 
 export default BitcoinTransactionPage;

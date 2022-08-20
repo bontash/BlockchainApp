@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ParticlesBackground} from "../../../core/ui/background/ParticlesBackground";
 import AccountsCard from "./components/AccountsCard";
 import {Web3Client} from "./components/Web3Client";
-import TransactionsTable from "./modules/TransactionsTable";
+import EthereumTransactionsTable from "./modules/EthereumTransactionsTable";
 import {PageTitle} from "../../../core/ui/PageTitle";
 
 const EthereumTransactionPage = () => {
@@ -68,7 +68,8 @@ const EthereumTransactionPage = () => {
                           valueField={valueField}
                           onChangeValue={(e) => setValueField(e.target.value)}
                           onClick={() => mineValue()}/>
-        <TransactionsTable/>
+        <p />
+        <EthereumTransactionsTable/>
     </>
 }
 

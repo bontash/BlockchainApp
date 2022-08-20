@@ -8,9 +8,12 @@ export default class EthereumTransactionRepository {
         this.schema = schema;
     }
 
-    async createEthereumTransactions(ethereumTransactions: ITransaction[]): Promise<ITransaction[]> {
+    async createEthereumTransaction(ethereumTransaction: ITransaction[]): Promise<ITransaction[]> {
         // @ts-ignore
-        return await this.schema.ethereumTransactions.insertMany(ethereumTransactions);
+        return await this.schema.ethereumTransactions?.insertMany([ethereumTransaction]).then(data => {
+            if (data.length > 1) return data[0];
+            return null;
+        }).catch(err => console.log(err));
     }
 
     async getEthereumTransactionById(ethereumTransactionId: string): Promise<ITransaction[]> {

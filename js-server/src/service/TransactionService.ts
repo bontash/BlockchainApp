@@ -1,15 +1,34 @@
 import DataProvider from "../repository/DataProvider";
+import {RepositoryConfig} from "../repository/config/types";
 
 
 export default class TransactionService {
     private dataProvider: DataProvider;
+    private repositories: RepositoryConfig;
 
-    constructor(dataProvider: DataProvider) {
+    constructor(dataProvider: DataProvider, repositories: RepositoryConfig) {
         this.dataProvider = dataProvider;
-
+        this.repositories = repositories;
     }
 
-    public async addBitcoinTransaction(tx_hex): Promise<any> {
-        return await this.dataProvider.sendTransaction(tx_hex);
+    public async sendBitcoinTransaction(tx_hex: string, accountID: string): Promise<any> {
+        const responseObject = await this.dataProvider.sendTransaction(tx_hex);
+
+        if(responseObject == null)
+            return responseObject;
+
+        this.repositories.BitcoinTransaction?.createBitcoinTransaction({
+            transactionID: responseObject.data.txid,
+            accountID: accountID
+        });
+
+        return responseObject
     }
+
+    public async getAllBitcoinTransactions(): Promise<any> {
+        const response = await this.repositories.BitcoinTransaction?.getAllBitcoinTransactions();
+        return response;
+    }
+
+
 }

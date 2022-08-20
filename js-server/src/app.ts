@@ -10,6 +10,7 @@ import TransactionService from "./service/TransactionService";
 import * as dotenv from 'dotenv';
 import {connectToDatabase} from "./repository/config/mongoose/setup";
 import DataProvider from "./repository/DataProvider";
+import {repositoryConfig} from "./repository/config/repositoryConfig";
 
 dotenv.config();
 
@@ -23,24 +24,25 @@ app.use(bodyParser())
 
 const router = new Router();
 
-const services = {
-    hashService: new HashService(),
-    transactionService: new TransactionService(new DataProvider())
-};
+connectToDatabase().then(async () => {
+    const repositories = await repositoryConfig();
 
-const controller = new Controller(services);
 
-new RouterConfig(router,controller);
+    const services = {
+        hashService: new HashService(),
+        transactionService: new TransactionService(new DataProvider(),repositories)
+    };
 
-// server.on('connection',(err, socket) => {
-//     connectToDatabase().then(() => {
-//         console.log("connected");
-//     })
-// })
+    const controller = new Controller(services);
 
-app.use(router.routes())
+    new RouterConfig(router,controller);
 
-app.listen(port, function () {
-    console.log(`App is listening on port ${port} !`)
-})
+    app.use(router.routes())
+
+    app.listen(port, function () {
+        console.log(`App is listening on port ${port} !`)
+    })
+});
+
+
 
