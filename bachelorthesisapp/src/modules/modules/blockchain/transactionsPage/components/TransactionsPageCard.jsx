@@ -5,7 +5,7 @@ import {TransactionCardContent} from "./TransactionCardContent";
 import {TransactionPageCardLogo} from "./TransactionPageCardLogo";
 
 const TransactionsPageCard = ({onClick, pageName, description, logo}) => {
-    return <Grid item xs={6} md={6} alignSelf={'center'}>
+    return <Grid item xs={3} md={3} alignSelf={'center'}>
         <Card sx={{
             width: 400,
             height: 450,
