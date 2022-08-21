@@ -7,8 +7,12 @@ import {BitcoinOutput} from "../types/BitcoinOutput";
 import {EthereumInput} from "../types/EthereumInput";
 import {EthereumOutput} from "../types/EthereumOutput";
 import RLP from "rlp";
-import {BitcoinTransactionInput} from "../types/TransactionInput";
-import {BitcoinTransactionOutput, GetBitcoinTransactionsOutput} from "../types/TransactionOutput";
+import {BitcoinTransactionInput, EthereumTransactionInput} from "../types/TransactionInput";
+import {
+    BitcoinTransactionOutput,
+    GetBitcoinTransactionsOutput,
+    GetEthereumTransactionsOutput
+} from "../types/TransactionOutput";
 import HashService from "../service/HashService";
 import TransactionService from "../service/TransactionService";
 
@@ -73,13 +77,24 @@ export default class Controller {
     //     return {};
     // }
 
-    public async sendBitcoinTransaction({tx_hex,accountID}: BitcoinTransactionInput): Promise<BitcoinTransactionOutput> {
+    public async sendBitcoinTransaction({tx_hex,accountID}: BitcoinTransactionInput): Promise<any> {
         const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex,accountID);
         return data;
     }
 
-    public async getAllBitcoinTransactions(): Promise<GetBitcoinTransactionsOutput> {
+    public async getAllBitcoinTransactions(): Promise<any> {
         const data = await this.services.transactionService.getAllBitcoinTransactions();
+        return data;
+    }
+
+    public async createEthereumTransaction({transactionID, accountID}: EthereumTransactionInput): Promise<any>{
+
+        const data = await this.services.transactionService.createEthereumTransaction(transactionID, accountID);
+        return data;
+    }
+
+    public async getAllEthereumTransactions(): Promise<GetEthereumTransactionsOutput>{
+        const data = await this.services.transactionService.getAllEthereumTransactions();
         return data;
     }
 }

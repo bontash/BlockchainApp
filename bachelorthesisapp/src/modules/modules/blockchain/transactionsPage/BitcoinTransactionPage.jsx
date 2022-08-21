@@ -6,17 +6,16 @@ import BitcoinAccountsCard from "./components/BitcoinAccountsCard";
 import {PageTitle} from "../../../core/ui/PageTitle";
 import BitcoinTransactionsTable from "./modules/BitcoinTransactionsTable";
 
-const fetchTransactions = (setResponse) => {
-    const requestOptions = {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'},
-    };
+const fetchTransactions = async () => {
+    const body = {
+        method: "GET",
+        url: `http://localhost:3001/bitcoinTransaction`,
+        headers: {'Content-Type': 'application/json'}
+    }
+    const result = await axios(body);
+    return result.data;
 
-    fetch(`http://localhost:3001/bitcoinTransaction`, requestOptions)
-        .then(response => console.log("Response:", response ))
-        .then(data => setResponse(data.bitcoinTransactions)).catch(error=> console.log("Error: ",error));
 }
-
 const BitcoinTransactionPage = () => {
 
     const [receiverAccount, setReceiverAccount] = useState("");
@@ -78,8 +77,8 @@ const BitcoinTransactionPage = () => {
         }
         const result = await axios(body);
         transactionId = result.data.data.txid;
-        fetchTransactions(setRows);
-        console.log("Rows: ",rows);
+        const rowsResult = await fetchTransactions();
+        setRows(rowsResult);
     }
 
 

@@ -13,3 +13,15 @@ type BitcoinColumns = {
     senderAccount: string
     idk: any
 }
+
+export type GetEthereumTransactionsOutput = {
+    ethereumTransactions?: EthereumColumns[],
+    error?: string
+}
+
+type EthereumColumns = {
+    id: any,
+    transactionId: string,
+    senderAccount: string
+    idk: any
+}

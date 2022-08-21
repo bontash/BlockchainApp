@@ -5,8 +5,10 @@ import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import {StyledTableCell} from "../../../../core/ui/StyledTableCell";
+import TableBody from "@mui/material/TableBody";
+import {StyledTableRow} from "../../../../core/ui/StyledTableRow";
 
-const EthereumTransactionsTable = () => {
+const EthereumTransactionsTable = ({rows}) => {
 
     return (
         <TableContainer component={Paper}>
@@ -21,15 +23,14 @@ const EthereumTransactionsTable = () => {
                         <StyledTableCell align="center">Block number</StyledTableCell>
                     </TableRow>
                 </TableHead>
-                {/*<TableBody>*/}
-                {/*    {rows!==[]?rows?.map((row) => (*/}
-                {/*        <StyledTableRow key={row.name}>*/}
-                {/*            <StyledTableCell align="left" component="th" scope="row">{row.typeOfHash}</StyledTableCell>*/}
-                {/*            <StyledTableCell align="left">{row.stringToHash}</StyledTableCell>*/}
-                {/*            <StyledTableCell align="center">{row.hashedString}</StyledTableCell>*/}
-                {/*        </StyledTableRow>*/}
-                {/*    )):null}*/}
-                {/*</TableBody>*/}
+                <TableBody>
+                    {rows!==[]?rows?.map((row,idx) => (
+                        <StyledTableRow key={"eth-row" + idx+ row.name}>
+                            <StyledTableCell align="left" component="th" scope="row">{row.accountID}</StyledTableCell>
+                            <StyledTableCell align="left">{row.transactionID}</StyledTableCell>
+                        </StyledTableRow>
+                    )):null}
+                </TableBody>
             </Table>
         </TableContainer>
     );

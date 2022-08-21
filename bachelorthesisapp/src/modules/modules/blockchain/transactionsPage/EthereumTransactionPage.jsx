@@ -4,6 +4,29 @@ import AccountsCard from "./components/AccountsCard";
 import {Web3Client} from "./components/Web3Client";
 import EthereumTransactionsTable from "./modules/EthereumTransactionsTable";
 import {PageTitle} from "../../../core/ui/PageTitle";
+import axios from "axios";
+
+const addTransaction = async (transactionID, accountID) => {
+    const body = {
+        method: "POST",
+        url: `http://localhost:3001/ethereumTransaction`,
+        headers: {'Content-Type': 'application/json'},
+        data: JSON.stringify({transactionID: transactionID, accountID: accountID})
+    }
+    const result = await axios(body);
+    return result.data;
+}
+
+const fetchTransactions = async () => {
+    const body = {
+        method: "GET",
+        url: `http://localhost:3001/ethereumTransaction`,
+        headers: {'Content-Type': 'application/json'}
+    }
+    const result = await axios(body);
+    return result.data;
+
+}
 
 const EthereumTransactionPage = () => {
 
@@ -12,6 +35,8 @@ const EthereumTransactionPage = () => {
     const [senderAccount, setSenderAccount] = useState("");
     const [balance, setBalance] = useState();
     const [network, setNetwork] = useState("");
+    const [rows, setRows] = useState([]);
+    let transactionId;
 
     async function loadAccounts() {
         //givenProvider is the provider which makes the browser compatible with web3
@@ -31,16 +56,22 @@ const EthereumTransactionPage = () => {
     }
 
 
-    function mineValue() {
+     function mineValue() {
         console.log(valueField);
         const weiValue = Web3Client.utils.toWei(valueField);
         Web3Client.eth.sendTransaction({
             from: senderAccount,
             to: receiverAccount,
             value: weiValue
-        }, function (error, hash) {
-            console.log("error: " + error + " and hash: " + hash);
-        });
+        }, async function (error, hash) {
+            if (hash !== undefined) {
+                transactionId = hash;
+                console.log("Hash: ", transactionId);
+                await addTransaction(transactionId, senderAccount);
+                const responseFind = await fetchTransactions();
+                setRows(responseFind);
+            }
+        })
     }
 
     useEffect(() => {
@@ -60,16 +91,16 @@ const EthereumTransactionPage = () => {
 
     return <>
         <ParticlesBackground/>
-            <PageTitle>
-                Ethereum transactions
-            </PageTitle>
-            <AccountsCard accountValue={receiverAccount}
-                          onChangeAccount={(e) => setReceiverAccount(e.target.value)}
-                          valueField={valueField}
-                          onChangeValue={(e) => setValueField(e.target.value)}
-                          onClick={() => mineValue()}/>
-        <p />
-        <EthereumTransactionsTable/>
+        <PageTitle>
+            Ethereum transactions
+        </PageTitle>
+        <AccountsCard accountValue={receiverAccount}
+                      onChangeAccount={(e) => setReceiverAccount(e.target.value)}
+                      valueField={valueField}
+                      onChangeValue={(e) => setValueField(e.target.value)}
+                      onClick={() => mineValue()}/>
+        <p/>
+        <EthereumTransactionsTable rows={rows}/>
     </>
 }
 

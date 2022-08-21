@@ -24,11 +24,10 @@ const BitcoinTransactionsTable = ({rows}) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {console.log(typeof rows)}
                     {rows!==[]?rows?.map((row) => (
                         <StyledTableRow key={row.name}>
-                            <StyledTableCell align="left" component="th" scope="row">{row.transactionId}</StyledTableCell>
-                            <StyledTableCell align="left">{row.senderAccount}</StyledTableCell>
+                            <StyledTableCell align="left" component="th" scope="row">{row.transactionID}</StyledTableCell>
+                            <StyledTableCell align="left">{row.accountID}</StyledTableCell>
                         </StyledTableRow>
                     )):null}
                 </TableBody>
