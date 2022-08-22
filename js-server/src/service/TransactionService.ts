@@ -1,6 +1,5 @@
 import DataProvider from "../repository/DataProvider";
 import {RepositoryConfig} from "../repository/config/types";
-import {EthereumInput} from "../types/EthereumInput";
 import {EthereumTransactionInput} from "../types/TransactionInput";
 
 
@@ -13,7 +12,7 @@ export default class TransactionService {
         this.repositories = repositories;
     }
 
-    public async sendBitcoinTransaction(tx_hex: string, accountID: string): Promise<any> {
+    public async sendBitcoinTransaction(tx_hex: string, senderAccountID: string, receiverAccountID: string, value: string, satoshisUsed: number, script: string): Promise<any> {
         const responseObject = await this.dataProvider.sendTransaction(tx_hex);
 
         if (responseObject == null)
@@ -21,14 +20,19 @@ export default class TransactionService {
 
         this.repositories.BitcoinTransaction?.createBitcoinTransaction({
             transactionID: responseObject.data.txid,
-            accountID: accountID
+            senderAccountID: senderAccountID,
+            receiverAccountID: receiverAccountID,
+            value: value,
+            satoshisUsed: satoshisUsed,
+            script: script
         });
 
         return responseObject
     }
 
-    public async getAllBitcoinTransactions(): Promise<any> {
-        const response = await this.repositories.BitcoinTransaction?.getAllBitcoinTransactions();
+    public async getAllBitcoinTransactions(senderAccountID: string): Promise<any> {
+        const response = await this.repositories.BitcoinTransaction?.getAllBitcoinTransactions(senderAccountID);
+        console.log("Service: ", response);
         return response;
     }
 
@@ -46,7 +50,6 @@ export default class TransactionService {
 
     public async getAllEthereumTransactions(senderAccountID: string): Promise<any> {
         const response = await this.repositories.EthereumTransaction?.getAllEthereumTransactions(senderAccountID);
-        console.log("Service get: ", response);
         return response;
     }
 

@@ -77,13 +77,13 @@ export default class Controller {
     //     return {};
     // }
 
-    public async sendBitcoinTransaction({tx_hex, accountID}: BitcoinTransactionInput): Promise<any> {
-        const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex, accountID);
+    public async sendBitcoinTransaction(tx_hex: string, senderAccountID: string, receiverAccountID: string, value: string, satoshisUsed: number, script: string): Promise<any> {
+        const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex, senderAccountID, receiverAccountID, value, satoshisUsed, script);
         return data;
     }
 
-    public async getAllBitcoinTransactions(): Promise<any> {
-        const data = await this.services.transactionService.getAllBitcoinTransactions();
+    public async getAllBitcoinTransactions(senderAccountID: string): Promise<any> {
+        const data = await this.services.transactionService.getAllBitcoinTransactions(senderAccountID);
         return data;
     }
 

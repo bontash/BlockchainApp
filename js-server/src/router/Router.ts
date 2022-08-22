@@ -68,7 +68,7 @@ export default class Router {
 
         router.post("/bitcoinTransaction",async ({request, response}) => {
             try {
-                const result = await this.controller.sendBitcoinTransaction(request.body);
+                const result = await this.controller.sendBitcoinTransaction(request.body.tx_hex, request.body.senderAccountID, request.body.receiverAccountID, request.body.value, request.body.satoshisUsed, request.body.script);
                 response.status = 200;
                 response.body = result;
             } catch (e) {
@@ -77,14 +77,16 @@ export default class Router {
             }
         })
 
-        router.get("/bitcoinTransaction", async ({response}) => {
+        router.get("/bitcoinTransaction", async (ctx) => {
             try {
-                const result = await this.controller.getAllBitcoinTransactions();
-                response.status = 200;
-                response.body = result;
+                console.log("Ctx: ", ctx.query);
+                const result = await this.controller.getAllBitcoinTransactions(ctx.query.senderAccountID);
+                console.log("Router: ", result);
+                ctx.status = 200;
+                ctx.body = result;
             } catch(e) {
-                response.status = 500;
-                response.body = {error: "Internal server error"};
+                ctx.status = 500;
+                ctx.body = {error: "Internal server error"};
             }
         })
     }

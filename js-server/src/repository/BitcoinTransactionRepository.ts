@@ -15,8 +15,9 @@ export default class BitcoinTransactionRepository {
         }).catch(err => console.log(err));
     }
 
-    async getAllBitcoinTransactions(): Promise<any> {
-        const response = await this.schema.bitcoinTransactions?.find();
+    async getAllBitcoinTransactions(senderAccountID: string): Promise<any> {
+        const response = await this.schema.bitcoinTransactions?.find({senderAccountID: senderAccountID});
+        console.log("Repo: ", response);
         return response;
     }
 }
