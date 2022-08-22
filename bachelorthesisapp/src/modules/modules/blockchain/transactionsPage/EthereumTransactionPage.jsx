@@ -5,22 +5,31 @@ import {Web3Client} from "./components/Web3Client";
 import EthereumTransactionsTable from "./modules/EthereumTransactionsTable";
 import {PageTitle} from "../../../core/ui/PageTitle";
 import axios from "axios";
+import {Snackbar} from "@mui/material";
+import * as BN from "bn.js"
 
-const addTransaction = async (transactionID, accountID) => {
+const addTransaction = async (transactionID, accountID, gasUsed, blockNr, receiverAccountID, value) => {
     const body = {
         method: "POST",
         url: `http://localhost:3001/ethereumTransaction`,
         headers: {'Content-Type': 'application/json'},
-        data: JSON.stringify({transactionID: transactionID, accountID: accountID})
+        data: JSON.stringify({
+            transactionID: transactionID,
+            senderAccountID: accountID,
+            gasUsed: gasUsed,
+            blockNr: blockNr,
+            receiverAccountID: receiverAccountID,
+            value: value
+        })
     }
     const result = await axios(body);
     return result.data;
 }
 
-const fetchTransactions = async () => {
+const fetchTransactions = async (senderAccountID) => {
     const body = {
         method: "GET",
-        url: `http://localhost:3001/ethereumTransaction`,
+        url: `http://localhost:3001/ethereumTransaction?senderAccountID=${senderAccountID}`,
         headers: {'Content-Type': 'application/json'}
     }
     const result = await axios(body);
@@ -37,11 +46,19 @@ const EthereumTransactionPage = () => {
     const [network, setNetwork] = useState("");
     const [rows, setRows] = useState([]);
     let transactionId;
+    const [open, setOpen] = useState(false);
+
+    function handleClose() {
+        setOpen(false);
+    }
+
+
+    useEffect(() => {
+        setOpen(true)
+    }, [])
 
     async function loadAccounts() {
-        //givenProvider is the provider which makes the browser compatible with web3
-        //in my case, the givenProvider is Metamask
-        // the fallback option is Ganache's address
+
         const accounts = await Web3Client.eth.requestAccounts();
         setSenderAccount(accounts[0]);
     }
@@ -55,34 +72,53 @@ const EthereumTransactionPage = () => {
         setBalance(trimmedBalance.toFixed(4));
     }
 
+    async function getBlockInfo(hash) {
+        const data = await Web3Client.eth.getTransaction(hash);
+        return data;
+    }
 
-     function mineValue() {
-        console.log(valueField);
+
+    function mineValue() {
         const weiValue = Web3Client.utils.toWei(valueField);
-        Web3Client.eth.sendTransaction({
-            from: senderAccount,
-            to: receiverAccount,
-            value: weiValue
-        }, async function (error, hash) {
-            if (hash !== undefined) {
-                transactionId = hash;
-                console.log("Hash: ", transactionId);
-                await addTransaction(transactionId, senderAccount);
-                const responseFind = await fetchTransactions();
-                setRows(responseFind);
-            }
-        })
+        const reducedWeiValue = weiValue / 10000000;
+        const weiValueBN = new BN(reducedWeiValue, 10);
+        const weiValueInt = weiValueBN.toNumber();
+        const balanceWei = Web3Client.utils.toWei(balance);
+        const reducedBalanceWei = balanceWei / 10000000;
+        const balanceBN = new BN(reducedBalanceWei, 10);
+        const balanceInt = balanceBN.toNumber();
+        let blockInfo;
+
+        if (balanceInt - weiValueInt - 257 >= 0) {
+            Web3Client.eth.sendTransaction({
+                from: senderAccount,
+                to: receiverAccount,
+                value: weiValue
+            }, async function (error, hash) {
+                if (hash !== undefined) {
+                    transactionId = hash;
+                    do {
+                        blockInfo = await getBlockInfo(hash);
+                    } while (blockInfo.blockNumber === null);
+                    if (blockInfo.blockNumber !== null) {
+                        const gasUsed = blockInfo.gasPrice;
+                        const blockNr = blockInfo.blockNumber;
+                        await addTransaction(transactionId, senderAccount, gasUsed, blockNr, receiverAccount, valueField);
+                        const responseFind = await fetchTransactions(senderAccount);
+                        setRows(responseFind);
+                    }
+                }
+            })
+        } else alert("You do not have enough ETH in your account!")
     }
 
     useEffect(() => {
-        console.log("called loadAccounts use effecrt")
         loadAccounts()
             .then(r => console.log("account"))
             .catch((e) => console.log("error:", e));
     }, [])
 
     useEffect(() => {
-        console.log("called load balance use effect")
         if (senderAccount)
             loadBalance()
                 .then(r => console.log("balance"))
@@ -91,6 +127,13 @@ const EthereumTransactionPage = () => {
 
     return <>
         <ParticlesBackground/>
+        <Snackbar sx={{maxWidth: 600}}
+                  message={"For testing the functionality from this page, you need the Metamask extension with an account, some test ETH and " +
+                  "a receiver account. This transaction will be sent to the Ropsten testnet and information about each transaction made on this page will appear in the table " +
+                  "below. Don't worry if it does not load right away! It takes a couple of seconds from the transaction to be selected from the mempool and deployed into a block. " +
+                  "You can check the information on etherscan.io"} autoHideDuration={45000} open={open}
+                  onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
+        />
         <PageTitle>
             Ethereum transactions
         </PageTitle>

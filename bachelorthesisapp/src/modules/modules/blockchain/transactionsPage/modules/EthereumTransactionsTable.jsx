@@ -26,8 +26,12 @@ const EthereumTransactionsTable = ({rows}) => {
                 <TableBody>
                     {rows!==[]?rows?.map((row,idx) => (
                         <StyledTableRow key={"eth-row" + idx+ row.name}>
-                            <StyledTableCell align="left" component="th" scope="row">{row.accountID}</StyledTableCell>
-                            <StyledTableCell align="left">{row.transactionID}</StyledTableCell>
+                            <StyledTableCell align="center" component="th" scope="row">{row.transactionID}</StyledTableCell>
+                            <StyledTableCell align="center">{row.senderAccountID}</StyledTableCell>
+                            <StyledTableCell align="center">{row.receiverAccountID}</StyledTableCell>
+                            <StyledTableCell align="center">{row.value}</StyledTableCell>
+                            <StyledTableCell align="center">{row.gasUsed}</StyledTableCell>
+                            <StyledTableCell align="center">{row.blockNr}</StyledTableCell>
                         </StyledTableRow>
                     )):null}
                 </TableBody>

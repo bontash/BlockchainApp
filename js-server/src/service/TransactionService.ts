@@ -1,5 +1,7 @@
 import DataProvider from "../repository/DataProvider";
 import {RepositoryConfig} from "../repository/config/types";
+import {EthereumInput} from "../types/EthereumInput";
+import {EthereumTransactionInput} from "../types/TransactionInput";
 
 
 export default class TransactionService {
@@ -30,16 +32,21 @@ export default class TransactionService {
         return response;
     }
 
-    public async createEthereumTransaction(transactionId: string, accountId: string): Promise<any> {
-        console.log("Service: ",transactionId);
-        return this.repositories.EthereumTransaction?.createEthereumTransaction({
-            transactionID: transactionId,
-            accountID: accountId
-        })
+    public async createEthereumTransaction(transaction: EthereumTransactionInput): Promise<any> {
+        const data = this.repositories.EthereumTransaction?.createEthereumTransaction({
+            transactionID: transaction.transactionID,
+            senderAccountID: transaction.senderAccountID,
+            receiverAccountID: transaction.receiverAccountID,
+            value: transaction.value,
+            blockNr: transaction.blockNr,
+            gasUsed: transaction.gasUsed
+        });
+        return data;
     }
 
-    public async getAllEthereumTransactions(): Promise<any> {
-        const response = await this.repositories.EthereumTransaction?.getAllEthereumTransactions();
+    public async getAllEthereumTransactions(senderAccountID: string): Promise<any> {
+        const response = await this.repositories.EthereumTransaction?.getAllEthereumTransactions(senderAccountID);
+        console.log("Service get: ", response);
         return response;
     }
 

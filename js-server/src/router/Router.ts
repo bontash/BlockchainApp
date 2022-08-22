@@ -56,9 +56,10 @@ export default class Router {
 
         router.get("/ethereumTransaction", async (ctx) => {
             try {
-                const result = await this.controller.getAllEthereumTransactions();
+                const result = await this.controller.getAllEthereumTransactions(ctx.query.senderAccountID);
                 ctx.response.status = 200;
                 ctx.response.body = result;
+                console.log("Router get: ", result);
             } catch (e) {
                 ctx.status = 500;
                 ctx.body = {error: "Internal server error"};

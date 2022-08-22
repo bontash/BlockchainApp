@@ -17,7 +17,7 @@ import HashService from "../service/HashService";
 import TransactionService from "../service/TransactionService";
 
 export default class Controller {
-    services: { hashService:HashService, transactionService:TransactionService };
+    services: { hashService: HashService, transactionService: TransactionService };
     hashServiceFunctions: any;
 
     public constructor(services) {
@@ -77,8 +77,8 @@ export default class Controller {
     //     return {};
     // }
 
-    public async sendBitcoinTransaction({tx_hex,accountID}: BitcoinTransactionInput): Promise<any> {
-        const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex,accountID);
+    public async sendBitcoinTransaction({tx_hex, accountID}: BitcoinTransactionInput): Promise<any> {
+        const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex, accountID);
         return data;
     }
 
@@ -87,14 +87,15 @@ export default class Controller {
         return data;
     }
 
-    public async createEthereumTransaction({transactionID, accountID}: EthereumTransactionInput): Promise<any>{
+    public async createEthereumTransaction(transaction: EthereumTransactionInput): Promise<any> {
 
-        const data = await this.services.transactionService.createEthereumTransaction(transactionID, accountID);
+        const data = await this.services.transactionService.createEthereumTransaction(transaction);
         return data;
     }
 
-    public async getAllEthereumTransactions(): Promise<GetEthereumTransactionsOutput>{
-        const data = await this.services.transactionService.getAllEthereumTransactions();
+    public async getAllEthereumTransactions(senderAccountID: string): Promise<GetEthereumTransactionsOutput> {
+        const data = await this.services.transactionService.getAllEthereumTransactions(senderAccountID);
+        console.log("Controller get: ", data);
         return data;
     }
 }

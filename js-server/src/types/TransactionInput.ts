@@ -5,5 +5,9 @@ export type BitcoinTransactionInput = {
 
 export type EthereumTransactionInput = {
     transactionID: string,
-    accountID: string
+    senderAccountID: string,
+    receiverAccountID: string,
+    value: string,
+    blockNr: number,
+    gasUsed: number
 }

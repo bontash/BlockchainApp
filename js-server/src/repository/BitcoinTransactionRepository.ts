@@ -1,5 +1,5 @@
 import {SchemaList} from "./config/mongoose/setup";
-import {ITransaction} from "./config/schemas/BlockchainTransaction";
+import {IBitcoinTransaction} from "./config/schemas/BitcoinTransaction";
 
 export default class BitcoinTransactionRepository {
     private schema: SchemaList;
@@ -8,7 +8,7 @@ export default class BitcoinTransactionRepository {
         this.schema = schema;
     }
 
-    async createBitcoinTransaction(bitcoinTransaction: ITransaction): Promise<any> {
+    async createBitcoinTransaction(bitcoinTransaction: IBitcoinTransaction): Promise<any> {
         return await this.schema.bitcoinTransactions?.insertMany([bitcoinTransaction]).then(data => {
             if (data.length > 1) return data[0];
             return null;

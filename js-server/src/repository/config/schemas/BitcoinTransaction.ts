@@ -1,12 +1,14 @@
 import {Types} from "mongoose";
 
-export interface ITransaction {
+export interface IBitcoinTransaction {
     _id?: Types.ObjectId,
     accountID?: string,
     transactionID?: string
 }
 
-export const transactionSchema = {
+export const bitcoinTransactionSchema = {
     accountID: {type: String, required: true},
     transactionID: {type: String, required: true, unique: true}
 }
+
+
