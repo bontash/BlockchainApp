@@ -7,10 +7,8 @@ import {BitcoinOutput} from "../types/BitcoinOutput";
 import {EthereumInput} from "../types/EthereumInput";
 import {EthereumOutput} from "../types/EthereumOutput";
 import RLP from "rlp";
-import {BitcoinTransactionInput, EthereumTransactionInput} from "../types/TransactionInput";
+import {EthereumTransactionInput} from "../types/TransactionInput";
 import {
-    BitcoinTransactionOutput,
-    GetBitcoinTransactionsOutput,
     GetEthereumTransactionsOutput
 } from "../types/TransactionOutput";
 import HashService from "../service/HashService";
@@ -72,10 +70,6 @@ export default class Controller {
         const finalHash = changeEndianness(stringOutput);
         return {finalHash};
     }
-
-    // public ethereumTransaction({account}: TransactionInput): TransactionOutput {
-    //     return {};
-    // }
 
     public async sendBitcoinTransaction(tx_hex: string, senderAccountID: string, receiverAccountID: string, value: string, satoshisUsed: number, script: string): Promise<any> {
         const data = await this.services.transactionService.sendBitcoinTransaction(tx_hex, senderAccountID, receiverAccountID, value, satoshisUsed, script);
