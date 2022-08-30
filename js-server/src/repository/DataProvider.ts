@@ -21,7 +21,4 @@ export default class DataProvider {
         return result?.data;
     }
 
-    public findTransaction(transactionId: string) {
-        return;
-    }
 }

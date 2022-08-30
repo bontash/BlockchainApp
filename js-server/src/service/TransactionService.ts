@@ -32,7 +32,6 @@ export default class TransactionService {
 
     public async getAllBitcoinTransactions(senderAccountID: string): Promise<any> {
         const response = await this.repositories.BitcoinTransaction?.getAllBitcoinTransactions(senderAccountID);
-        console.log("Service: ", response);
         return response;
     }
 

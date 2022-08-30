@@ -18,7 +18,6 @@ export default class EthereumTransactionRepository {
 
     async getAllEthereumTransactions(senderAccountID: string): Promise<any> {
         const response = await this.schema.ethereumTransactions?.find({senderAccountID: senderAccountID});
-        console.log("Repo get: ", response);
         return response;
     }
 }

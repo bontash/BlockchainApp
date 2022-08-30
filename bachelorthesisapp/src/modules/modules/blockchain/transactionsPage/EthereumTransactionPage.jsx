@@ -113,16 +113,12 @@ const EthereumTransactionPage = () => {
     }
 
     useEffect(() => {
-        loadAccounts()
-            .then(r => console.log("account"))
-            .catch((e) => console.log("error:", e));
+        loadAccounts();
     }, [])
 
     useEffect(() => {
         if (senderAccount)
-            loadBalance()
-                .then(r => console.log("balance"))
-                .catch((e) => console.log("error:", e));
+            loadBalance();
     }, [senderAccount])
 
     return <>

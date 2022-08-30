@@ -95,7 +95,6 @@ export default class Controller {
 
     public async getAllEthereumTransactions(senderAccountID: string): Promise<GetEthereumTransactionsOutput> {
         const data = await this.services.transactionService.getAllEthereumTransactions(senderAccountID);
-        console.log("Controller get: ", data);
         return data;
     }
 }
