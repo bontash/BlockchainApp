@@ -5,7 +5,7 @@ export const AvalancheEffect = (stringToHash, hashFct, hash, nrOfBits) => {
     let differentBits = 0;
     const stringToHashBytes = utf8ToBytes(stringToHash);
     let modifiedStringBytes = stringToHashBytes;
-    modifiedStringBytes[stringToHashBytes.length - 1] = stringToHashBytes[stringToHashBytes.length - 1] + 1;
+    modifiedStringBytes[stringToHashBytes.length - 1] = stringToHashBytes[stringToHashBytes.length - 1] ^ 1;
     const modifiedString = bytesToUtf8(modifiedStringBytes);
     const modifiedStringHex = hashFct(modifiedString);
     const modifiedStringHexBits = hex2Binary(modifiedStringHex);
