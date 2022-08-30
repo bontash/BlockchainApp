@@ -39,7 +39,7 @@ const TransactionsMainPage = () => {
         <Grid container direction={'row'} justifyContent={'space-evenly'} alignItems={'center'}>
             <TransactionsPageCard onClick={() => history.push(routes[0])} pageName={'Bitcoin'}
                                   description={'Connection made to the Bitcoin Testnet, which provides the same functionalities' +
-                                  ' as the Bitcoin Mainnet, with the help of bitcore-lib JS library and Bitpay wallet.'}
+                                  ' as the Bitcoin Mainnet, with the help of bitcore-lib JS library and Electrum wallet.'}
                                   logo={logos[0]}/>
             <TransactionsPageCard onClick={() => history.push(routes[1])} pageName={'Ethereum'}
                                   description={'Connection to the Ropsten Testnet, which has the same capabilities as the Ethereum Mainnet,' +

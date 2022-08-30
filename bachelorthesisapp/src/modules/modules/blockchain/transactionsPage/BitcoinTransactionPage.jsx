@@ -62,6 +62,7 @@ const BitcoinTransactionPage = () => {
             script_asm = elem.script_asm;
             inputs.push(utxo);
         }
+        console.log(inputs);
         let transactionSize = inputCount * 146 + outputCount * 34 + 10 - inputCount;
         // Check if we have enough funds to cover the transaction and the fees assuming we want to pay 20 satoshis per byte
 
@@ -110,7 +111,7 @@ const BitcoinTransactionPage = () => {
             Bitcoin transactions
         </PageTitle>
         <Snackbar sx={{maxWidth: 600}}
-                  message={"For testing the functionality from this page, you need a wallet for BTC, like Bitpay with an account for BTC testnet. From there, " +
+                  message={"For testing the functionality from this page, you need a wallet for BTC, like Electrum with an account for BTC testnet. From there, " +
                   "you need to get your private key, for signing the transaction, your public key which is your account and the public key of a receiver. You " +
                   "can check the information from the table on sochain.com"} autoHideDuration={45000} open={open}
                   onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'left'}}
